@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../middleware";
+import { verifyToken, admin } from "../middleware";
 
 const usersRouter = express.Router()
 
@@ -10,7 +10,7 @@ usersRouter.post('/signup', signUp)
 
 usersRouter.post('/login', logIn)
 
-usersRouter.get('/getusers', verifyToken, getAllUser)
+usersRouter.get('/getusers', verifyToken, admin, getAllUser)
 
 
 

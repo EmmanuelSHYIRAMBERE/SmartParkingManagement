@@ -2,7 +2,10 @@ import { Tours } from "../../models";
 
 export const addNewTour = async (req, res) => {
     try {
-        const tour = await Tours.create(req.body)
+        const tour = await Tours.create({
+            ...req.body,
+            backDropImage:req.file.path
+        })
         res.status(201).json(tour)
 
         tour.save()
