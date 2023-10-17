@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use("/holidays", holidaysRouter)
 
 mongoose.set("strictQuery", false)
-mongoose.connect(process.env.DB_connect_dev).then((res) => {
+mongoose.connect(process.env.DB_connect_devs).then((res) => {
     console.log(`connected to mongo DB`)
     app.listen(port, () => console.log(`Holday-tour project is running on port http://localhost:${port}`))
 
