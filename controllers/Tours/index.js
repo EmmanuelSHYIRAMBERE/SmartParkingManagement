@@ -1,0 +1,6 @@
+export * from "./makeTour"
+export * from "./getAllTours"
+export * from "./deleteTour"
+export * from "./UpdateTour"
+export * from "./modifyTour"
+export * from "./getOneTour"
