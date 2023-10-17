@@ -5,7 +5,18 @@ import { verifyToken, admin } from "../middleware";
 
 const toursRouter = express.Router();
 
-const upload = multer({dest:"tour_images"})
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        console.log("req", req);
+        cb(null, "tour_images");
+    },
+    filename: function (req, file, cb) {
+        console.log("file", req.file);
+        cb(null, file.originalname);
+    },
+})
+
+const upload = multer({dest:"tour_images", storage:storage})
 
 import {getOneTour, getTours, addNewTour, deleteTour, updateTour, modifyTour} from "../controllers/Tours";
 
