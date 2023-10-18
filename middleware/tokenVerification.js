@@ -22,6 +22,9 @@ export const verifyToken = (req, res, next) => {
             req.UserId = verified._id
             next()
 
+            console.log(verified._id, "tokenId");
+            console.log(req.params.id, "reqId");
+
         })
         
     } catch (error) {
