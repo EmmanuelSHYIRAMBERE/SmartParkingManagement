@@ -20,4 +20,3 @@ mongoose.connect(process.env.DB_connect_devs).then((res) => {
 }) .catch ((error) => {
     console.log(error)
 })
-

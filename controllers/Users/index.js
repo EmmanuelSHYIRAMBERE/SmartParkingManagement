@@ -1,3 +1,7 @@
 export * from "./signUp"
 export * from "./getAllUser"
 export * from "./logIn"
+export * from "./updateUser"
+export * from "./modifyUser"
+export * from "./getUser"
+export * from "./deleteUser"

@@ -16,7 +16,6 @@ export const deleteTour = async (req, res) => {
             message: `Tour with ID: ${id}, deleted successfully!`,
         });
 
-        tour.save()
         
     } catch (error) {
         res.status(500).json({

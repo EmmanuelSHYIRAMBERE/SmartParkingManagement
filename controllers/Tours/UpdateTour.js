@@ -17,8 +17,6 @@ export const updateTour = async (req, res) => {
             message: `A tour with ID: ${id}, updated successfully to;`,
             updatedTour,
         })
-
-        updateTour.save()
             
     } catch (error) {
         res.status(500).json({

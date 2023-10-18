@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        required: false
+    },
     password: {
         type: String,
         required: true
@@ -23,7 +27,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     role: {
-        type:String, 
+        type: String, 
         default: "user"
     },
 });

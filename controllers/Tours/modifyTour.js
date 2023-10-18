@@ -17,8 +17,6 @@ export const modifyTour = async (req, res) => {
             messsage: `A tour with ID: ${id}, modified successfully to;`,
             modifiedTour,
         })
-
-        modifiedTour.save()
         
     } catch (error) {
         res.status(500).json({
