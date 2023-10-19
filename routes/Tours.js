@@ -18,9 +18,9 @@ const upload = multer({dest:"tour_images", storage:storage})
 
 import {getOneTour, getTours, addNewTour, deleteTour, updateTour, modifyTour} from "../controllers/Tours";
 
-toursRouter.use(verifyToken)
-
 toursRouter.get("/gettours", admin,  getTours)
+
+toursRouter.use(verifyToken)
 
 toursRouter.get("/gettour/:id", getOneTour)
 
