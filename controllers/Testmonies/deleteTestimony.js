@@ -12,7 +12,7 @@ export const deleteTestimony = async (req, res) => {
             })
         }
         
-        res.status(200).json({
+        res.status(204).json({
             message: `A testimony with ID: ${id}, deleted successfully!`,
         });
         

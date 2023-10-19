@@ -12,7 +12,7 @@ export const deleteTour = async (req, res) => {
             })
         }
         
-        res.status(200).json({
+        res.status(204).json({
             message: `Tour with ID: ${id}, deleted successfully!`,
         });
 

@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import "dotenv/config";
@@ -7,6 +9,7 @@ import holidaysRouter from "./routes";
 const app = express();
 const port = process.env.PORT;
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
