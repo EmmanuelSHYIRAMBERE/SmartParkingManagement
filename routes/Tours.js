@@ -1,37 +1,30 @@
 import express from "express";
-import multer from "multer"; 
-
+import multer from "multer";
+import path from "path";
 import { verifyToken, admin } from "../middleware";
+import { uploads } from "../middleware/multer";
 
 const toursRouter = express.Router();
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "tour_images");
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    },
-})
+import {
+  getOneTour,
+  getTours,
+  addNewTour,
+  deleteTour,
+  updateTour,
+  modifyTour,
+} from "../controllers/Tours";
 
-const upload = multer({dest:"tour_images", storage:storage})
+toursRouter.post("/addtour", uploads, addNewTour);
 
-import {getOneTour, getTours, addNewTour, deleteTour, updateTour, modifyTour} from "../controllers/Tours";
+toursRouter.get("/gettours", verifyToken, admin, getTours);
 
-toursRouter.get("/gettours", admin,  getTours)
+toursRouter.get("/gettour/:id", getOneTour);
 
-toursRouter.use(verifyToken)
+toursRouter.delete("/delete/:id", deleteTour);
 
-toursRouter.get("/gettour/:id", getOneTour)
+toursRouter.patch("/updatetour/:id", updateTour);
 
-toursRouter.post("/addtour", upload.single("backDropImage"), addNewTour)
-
-toursRouter.delete("/delete/:id", deleteTour)
-
-toursRouter.patch("/updatetour/:id", updateTour)
-
-toursRouter.put("/modifytour/:id", modifyTour)
-
-
+toursRouter.put("/modifytour/:id", modifyTour);
 
 export default toursRouter;

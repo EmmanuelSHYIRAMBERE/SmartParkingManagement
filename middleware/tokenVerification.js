@@ -20,10 +20,8 @@ export const verifyToken = (req, res, next) => {
             }
             
             req.UserId = verified._id
+            console.log(req.UserId,"ussss");
             next()
-
-            console.log(verified._id, "tokenId");
-            console.log(req.params.id, "reqId");
 
         })
         

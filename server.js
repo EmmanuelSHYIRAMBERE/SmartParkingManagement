@@ -1,25 +1,53 @@
 import express from "express";
 import cors from "cors";
-
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import "dotenv/config";
+import swaggerUI from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
+
 import holidaysRouter from "./routes";
 
 const app = express();
 const port = process.env.PORT;
 
-app.use(cors());
+const options = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Holiday-Planners-Project API Documentation",
+      version: "1.0.0",
+      description:
+        "This Holiday-Planners-Project API Documentation is designed to provide basics of how this API functions.",
+    },
+    servers: [
+      {
+        url: "http://localhost:7080",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+const specs = swaggerJSDoc(options);
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-app.use("/holidays", holidaysRouter)
+app.use("/holidays", holidaysRouter);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-mongoose.set("strictQuery", false)
-mongoose.connect(process.env.DB_connect_devs).then((res) => {
-    console.log(`connected to mongo DB`)
-    app.listen(port, () => console.log(`Holday-tour project is running on port http://localhost:${port}`))
-
-}) .catch ((error) => {
-    console.log(error)
-})
+// mongoose.set("strictQuery", false)
+mongoose
+  .connect(process.env.DB_connect_devs)
+  .then((res) => {
+    console.log(`connected to mongo DB`);
+    app.listen(port, () =>
+      console.log(
+        `Holday-tour project is running on port http://localhost:${port}`
+      )
+    );
+  })
+  .catch((error) => {
+    console.log(error);
+  });

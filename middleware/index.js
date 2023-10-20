@@ -1,2 +1,2 @@
-export * from "./tokenVerification"
-export * from "./roleVerification"
+export * from "./tokenVerification";
+export * from "./roleVerification";

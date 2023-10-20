@@ -1,7 +1,7 @@
 {
   "name": "holiday-planner-project",
   "version": "1.0.0",
-  "description": "this project will provide functionality related to tours operations",
+  "description": "This Holiday-Planners-Project API Documentation is designed to provide basics of how this API functions.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server.js",
@@ -17,9 +17,14 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "lowdb": "^6.1.0",
     "mongoose": "^7.6.2",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.6"
+    "nanoid": "^5.0.2",
+    "nodemailer": "^6.9.6",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "engines": {
     "node": ">=14.20.1"
