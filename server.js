@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/holidays", holidaysRouter);
-app.use("/documentation", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
 
 // mongoose.set("strictQuery", false)
 mongoose
