@@ -1,22 +1,22 @@
-import dotenv from "dotenv";
-import cloudinary from "cloudinary";
 import { Tours } from "../../models/tourModel.js";
-import multer from "multer";
+import cloudinary from "../../utility/cloudinary.js";
 import path from "path";
-
-dotenv.config();
-
-cloudinary.v2;
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 export const addNewTour = async (req, res) => {
   try {
-    // const images = await cloudinary.uploader.upload(req.file.path);
+    // const imageResult = cloudinary.uploader.upload(
+    //   req.file.path,
+    //   function (err, result) {
+    //     if (err) {
+    //       console.log(err);
+    //       return result.status(500).json({ success: false, message: "Error" });
+    //     }
+
+    //     result
+    //       .status(201)
+    //       .json({ success: true, message: "Uploaded", data: result });
+    //   }
+    // );
 
     const newTour = await Tours.create({
       ...req.body,

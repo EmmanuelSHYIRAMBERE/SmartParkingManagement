@@ -22,7 +22,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:7080",
+        url: "https://holiday-planer-project.onrender.com",
       },
     ],
   },
@@ -31,7 +31,7 @@ const options = {
 const specs = swaggerJSDoc(options);
 
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/holidays", holidaysRouter);
