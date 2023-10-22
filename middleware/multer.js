@@ -10,22 +10,20 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage: storage,
+  fileFilter: function (req, file, callback) {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+      callback(null, true);
+    } else {
+      // prevent to upload files
+      console.log("only jpeg & png supported!");
+      callback(null, false);
+    }
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 2,
+  },
+});
 
-export const uploads = upload.single("backDropImage");
-
-export const fileFilter = (req, file, cb) => {
-  if (file.minetype === "image/jpeg" || file.minetype === "image/png") {
-    cb(null, true);
-  } else {
-    // prevent to upload files
-
-    cb({ message: "Unsupported File Format" }, false);
-  }
-};
-
-// export const uploader = multer((
-//   storage: storage,
-//   limits: { fileSize: 1023 *1204},
-//   fileFilter: fileFilter
-// ))
+export default upload;

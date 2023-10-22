@@ -58,13 +58,28 @@ import {
  *           type: string
  *           description: The role of the user i.e., user or admin
  *       example:
- *         id: it automatically generated, i.e., no need
+ *         id: it automatically generated, i.e., no need just remove this line
  *         email: emmanuelshyirambere@gmail.com
  *         fullNames: Emmanuel SHYIRAMBERE
  *         password: myPassword1
  *         phoneNo: "+25070000000"
  *         location: Kigali, Rwanda
  *         role: user
+ *     login:
+ *       type: object
+ *       required:
+ *         - email
+ *         - password
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: The email of the user
+ *         password:
+ *           type: string
+ *           description: The password of the user
+ *       example:
+ *         email: emashyirambere@gmail.com
+ *         password: myPassword
  *     userEdit:
  *       type: object
  *       required:
@@ -106,28 +121,20 @@ import {
  *         phoneNo: "+25070000000"
  *         location: Kigali, Rwanda
  *         role: user
- *     login:
- *       type: object
- *       required:
- *         - email
- *         - password
- *       properties:
- *         email:
- *           type: string
- *           description: The email of the user
- *         password:
- *           type: string
- *           description: The password of the user
- *       example:
- *         email: emashyirambere@gmail.com
- *         password: myPassword
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: The user login and signup managing API
  */
 
 /**
  * @swagger
  * tags:
  *   name: Users
- *   description: The user managing API
+ *   description: The user accesibility managing API
  */
 
 /**
@@ -207,7 +214,7 @@ usersRouter.get("/getuser/:id", verifyToken, getSingleUser);
  * /holidays/users/signup:
  *   post:
  *     summary: Create a new user
- *     tags: [Users]
+ *     tags: [Authentication]
  *     requestBody:
  *          required: true
  *          content:
@@ -232,7 +239,7 @@ usersRouter.post("/signup", signUp);
  * /holidays/users/login:
  *   post:
  *     summary: Log into user account
- *     tags: [Users]
+ *     tags: [Authentication]
  *     requestBody:
  *          required: true
  *          content:

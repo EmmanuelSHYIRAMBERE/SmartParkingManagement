@@ -27,7 +27,22 @@ const options = {
     ],
   },
   apis: ["./routes/*.js"],
+  components: {
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+  security: [
+    {
+      BearerAuth: [], // An empty array means the Bearer token is required
+    },
+  ],
 };
+
 const specs = swaggerJSDoc(options);
 
 app.use(bodyParser.json());
@@ -36,6 +51,7 @@ app.use(cors());
 
 app.use("/holidays", holidaysRouter);
 app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/uploads", express.static("tour_images"));
 
 // mongoose.set("strictQuery", false)
 mongoose

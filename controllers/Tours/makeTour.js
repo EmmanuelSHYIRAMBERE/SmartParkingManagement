@@ -18,6 +18,14 @@ export const addNewTour = async (req, res) => {
     //   }
     // );
 
+    // if (req.files) {
+    //   let path = "";
+    //   req.files.foreach(function (files, index, arr) {
+    //     path = path + files.path + ",";
+    //   });
+    //   path = path.substring(0, path.lastIndexOf(","))
+    // }
+
     const newTour = await Tours.create({
       ...req.body,
       backDropImage: req.file.path,
