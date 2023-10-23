@@ -49,6 +49,8 @@ import {
  *   post:
  *     summary: Create a new testimony information
  *     tags: [Testimonies]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -74,6 +76,8 @@ testimoniesRouter.post("/addtestimony", verifyToken, addTestimony);
  *   get:
  *     summary: Returns the list of all the tours
  *     tags: [Testimonies]
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *          description: The all information of the testimonies found succesfully
@@ -99,6 +103,8 @@ testimoniesRouter.get("/gettestimonies", verifyToken, getTestimonies);
  *   delete:
  *     summary: Delete the testimony data by id
  *     tags: [Testimonies]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id
@@ -131,6 +137,8 @@ testimoniesRouter.delete("/deletetestimony/:id", verifyToken, deleteTestimony);
  *   patch:
  *     summary: Update the testimony data by id
  *     tags: [Testimonies]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:

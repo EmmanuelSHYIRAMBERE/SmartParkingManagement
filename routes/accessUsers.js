@@ -51,7 +51,6 @@ import {
  *           type: string
  *           description: The role of the user i.e., user or admin
  *       example:
- *         id: it automatically generated, i.e., no need just remove this line
  *         email: emmanuelshyirambere@gmail.com
  *         fullNames: Emmanuel SHYIRAMBERE
  *         password: myPassword1
@@ -106,7 +105,6 @@ import {
  *           type: string
  *           description: The role of the user i.e., user or admin
  *       example:
- *         id: it automatically generated, i.e., no need
  *         email: emmanuelshyirambere@gmail.com
  *         fullNames: Emmanuel SHYIRAMBERE
  *         image: images.jpg
@@ -174,10 +172,6 @@ usersRouter.get("/getusers", verifyToken, admin, getAllUser);
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user found by id
@@ -270,10 +264,6 @@ usersRouter.post("/login", logIn);
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was modified successfully
@@ -314,10 +304,6 @@ usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was modified successfully
@@ -352,10 +338,6 @@ usersRouter.patch("/userupdate/:id", verifyToken, updateUser);
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was deleted successfully

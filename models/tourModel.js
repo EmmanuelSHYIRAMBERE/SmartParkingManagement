@@ -30,7 +30,7 @@ const tourShema = mongoose.Schema({
     required: false,
   },
   discount: {
-    type: Number,
+    type: String,
     required: false,
   },
   tourType: {

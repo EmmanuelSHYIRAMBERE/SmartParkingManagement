@@ -1,8 +1,5 @@
 import express from "express";
-import multer from "multer";
-import path from "path";
 import { verifyToken, admin } from "../middleware";
-import upload from "../middleware/multer";
 const toursRouter = express.Router();
 
 import {
@@ -51,6 +48,7 @@ import tourImagesUpload from "../middleware/multer";
  *           description: The destination of the tour
  *         backDropImage:
  *           type: string
+ *           format: binary
  *           description: The backdrop image for the tour
  *         title:
  *           type: string
@@ -68,7 +66,7 @@ import tourImagesUpload from "../middleware/multer";
  *           type: string
  *           description: The price of the tour
  *         discount:
- *           type: string
+ *           type: number
  *           description: Any discount available for the tour
  *         tourType:
  *           type: string
@@ -92,7 +90,10 @@ import tourImagesUpload from "../middleware/multer";
  *           type: string
  *           description: The return time for the tour
  *         gallery:
- *           type: string
+ *           type: array
+ *           items:
+ *             type: string
+ *             format: binary
  *           description: A gallery of images related to the tour
  *         priceIncluded:
  *           type: string
@@ -102,7 +103,7 @@ import tourImagesUpload from "../middleware/multer";
  *           description: What's not included in the tour price
  *       example:
  *         destination: "Rwanda, East Africa"
- *         backDropImage: "Beautiful_Rwanda.jpeg or https://www.google.com/url?sa=i&url=https%3A%2F%2Frwandaecocompany.com%2Ftop-reasons-why-tourists-visit-rwanda%2F&psig=AOvVaw2VInTRjkQDtoD24gVLg3ay&ust=1697968429656000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDPzrvvhoIDFQAAAAAdAAAAABAE"
+ *         backDropImage: "Beautiful_Rwanda.jpeg"
  *         title: "Rwanda's Natural Wonders Expedition"
  *         description: "Explore the breathtaking landscapes and wildlife of Rwanda, known as the 'Land of a Thousand Hills.'"
  *         duration: "10 days, 9 nights"
@@ -116,7 +117,7 @@ import tourImagesUpload from "../middleware/multer";
  *         toMonth: "September"
  *         departureTime: "9:00 AM (local time)"
  *         returntime: "5:00 PM (local time)"
- *         gallery: "https://www.visitrwanda.com/destinations/ or images.jpg, 2022-12-26.jpg,..."
+ *         gallery: "images.jpg, 2022-12-26.jpg,..."
  *         priceIncluded: "Accommodation in eco-friendly lodges, All meals during the tour, Gorilla trekking permits, Game drives and safaris, guides and naturalists, All in-country transportation."
  *         priceNotIncluded: "International airfare to and from Rwanda, Visa fees (if applicable), Personal expenses, Travel insurance, Gratuities for guides and staff."
  */
@@ -139,14 +140,14 @@ import tourImagesUpload from "../middleware/multer";
  *     requestBody:
  *          required: true
  *          content:
- *            application/json:
+ *            multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/tours'
  *     responses:
  *       201:
  *          description: The new tour data was successfully created
  *          content:
- *             application/json:
+ *             multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/tours'
  *       500:
@@ -255,7 +256,7 @@ toursRouter.delete("/deletetour/:id", verifyToken, admin, deleteTour);
  *     requestBody:
  *          required: true
  *          content:
- *            application/json:
+ *            multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/tours'
  *     parameters:
@@ -295,7 +296,7 @@ toursRouter.patch("/updatetour/:id", verifyToken, admin, updateTour);
  *     requestBody:
  *          required: true
  *          content:
- *            application/json:
+ *            multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/tours'
  *     parameters:
@@ -309,7 +310,7 @@ toursRouter.patch("/updatetour/:id", verifyToken, admin, updateTour);
  *       200:
  *          description: The type of a tour was modified successfully
  *          content:
- *             application/json:
+ *             multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/tours'
  *       204:
