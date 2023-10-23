@@ -60,6 +60,8 @@ import { admin, verifyToken } from "../middleware";
  *   get:
  *     summary: Get the data of the booked ticket by id
  *     tags: [Bookings]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id
@@ -90,6 +92,8 @@ bookingsRouter.get("/getbooking/:id", verifyToken, getBooking);
  *   get:
  *     summary: Returns the list of all the booking made
  *     tags: [Bookings]
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *          description: The list of the bookings found successfully
@@ -115,6 +119,8 @@ bookingsRouter.get("/getbookings", verifyToken, admin, getBookings);
  *   post:
  *     summary: Book a ticket of a given future tour
  *     tags: [Bookings]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -140,6 +146,8 @@ bookingsRouter.post("/booktour", verifyToken, bookTour);
  *   delete:
  *     summary: Delete the booked data by id
  *     tags: [Bookings]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id
@@ -172,6 +180,8 @@ bookingsRouter.delete("/deletebooking/:id", verifyToken, deleteBooking);
  *   patch:
  *     summary: Update the booking data by id
  *     tags: [Bookings]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -210,6 +220,8 @@ bookingsRouter.patch("/updatebooking/:id", verifyToken, updateBooking);
  *   put:
  *     summary: Modify the structure of the type of a booked data by id
  *     tags: [Bookings]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:

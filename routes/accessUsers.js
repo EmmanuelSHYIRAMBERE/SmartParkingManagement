@@ -1,17 +1,5 @@
 import express from "express";
-import multer from "multer";
 import { verifyToken, admin } from "../middleware";
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "user_images");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage });
 
 const usersRouter = express.Router();
 
@@ -177,6 +165,8 @@ usersRouter.get("/getusers", verifyToken, admin, getAllUser);
  *   get:
  *     summary: Get the user by id
  *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id
@@ -265,6 +255,8 @@ usersRouter.post("/login", logIn);
  *   put:
  *     summary: Modify the structure of the user by id
  *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -307,6 +299,8 @@ usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
  *   patch:
  *     summary: Update the user data by id
  *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -341,12 +335,7 @@ usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
  *          description: Internal Server Error
  */
 
-usersRouter.patch(
-  "/userupdate/:id",
-  verifyToken,
-  upload.single("image"),
-  updateUser
-);
+usersRouter.patch("/userupdate/:id", verifyToken, updateUser);
 
 /**
  * @swagger
@@ -354,6 +343,8 @@ usersRouter.patch(
  *   delete:
  *     summary: Delete the user data by id
  *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id

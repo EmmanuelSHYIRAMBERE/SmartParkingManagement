@@ -50,6 +50,8 @@ import { admin, verifyToken } from "../middleware";
  *   post:
  *     summary: Write a new communication reply
  *     tags: [Contacts]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -75,6 +77,8 @@ contactsRouter.post("/makecontact", verifyToken, makeContact);
  *   get:
  *     summary: Returns the all contacts data
  *     tags: [Contacts]
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *          description: The list of the contacts data found successfully
@@ -100,6 +104,8 @@ contactsRouter.get("/getcontacts", verifyToken, admin, getContacts);
  *   get:
  *     summary: Get the contact data by id
  *     tags: [Contacts]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id
@@ -129,6 +135,8 @@ contactsRouter.get("/getcontact/:id", verifyToken, getContact);
  *   patch:
  *     summary: Update the contact data by id
  *     tags: [Contacts]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -166,6 +174,8 @@ contactsRouter.patch("/updatecontact/:id", verifyToken, updateContact);
  *   delete:
  *     summary: Delete the contact data by id
  *     tags: [Contacts]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id

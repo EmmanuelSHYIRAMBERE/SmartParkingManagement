@@ -134,6 +134,8 @@ import tourImagesUpload from "../middleware/multer";
  *   post:
  *     summary: Create a new type of tour data
  *     tags: [Tours]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -214,6 +216,8 @@ toursRouter.get("/gettour/:id", getOneTour);
  *   delete:
  *     summary: Delete the tour data by id
  *     tags: [Tours]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *        - in: path
  *          name: id
@@ -246,6 +250,8 @@ toursRouter.delete("/deletetour/:id", verifyToken, admin, deleteTour);
  *   patch:
  *     summary: Update the tour data by id
  *     tags: [Tours]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
@@ -284,6 +290,8 @@ toursRouter.patch("/updatetour/:id", verifyToken, admin, updateTour);
  *   put:
  *     summary: Modify the structure of the type of a tour by id
  *     tags: [Tours]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *          required: true
  *          content:
