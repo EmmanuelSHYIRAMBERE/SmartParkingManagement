@@ -14,6 +14,11 @@ import { admin, verifyToken } from "../middleware";
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *     contacts:
  *       type: object
@@ -62,7 +67,7 @@ import { admin, verifyToken } from "../middleware";
  *          description: Internal Server Error
  */
 
-contactsRouter.post("/makecontact", makeContact);
+contactsRouter.post("/makecontact", verifyToken, makeContact);
 
 /**
  * @swagger
@@ -87,7 +92,7 @@ contactsRouter.post("/makecontact", makeContact);
  *          description: Internal Server Error
  */
 
-contactsRouter.get("/getcontacts", getContacts);
+contactsRouter.get("/getcontacts", verifyToken, admin, getContacts);
 
 /**
  * @swagger

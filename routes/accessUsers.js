@@ -28,6 +28,11 @@ import {
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *     signUp:
  *       type: object
@@ -144,12 +149,9 @@ import {
  *     summary: Returns the list of all the users for the sake of admin
  *     tags: [Users]
  *     parameters:
- *        - in: path
- *          name: token
- *          schema:
- *             type: string
+ *        - in: header
+ *          name: Authorization
  *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The list of the users found
@@ -158,7 +160,7 @@ import {
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/User'
+ *                   $ref: '#/components/schemas/userEdit'
  *       204:
  *          description: No any user in the database
  *       403:
@@ -184,19 +186,17 @@ usersRouter.get("/getusers", verifyToken, admin, getAllUser);
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: path
- *          name: token
- *          schema:
- *             type: string
+ *        - in: header
+ *          name: Authorization
  *          required: true
- *          description: The user access
+ *          description: The user access token
  *     responses:
  *       200:
  *          description: The user found by id
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/User'
+ *                   $ref: '#/components/schemas/userEdit'
  *       204:
  *          description: No any user in the database
  *       403:
@@ -280,6 +280,10 @@ usersRouter.post("/login", logIn);
  *             type: string
  *          required: true
  *          description: The user id
+ *        - in: header
+ *          name: Authorization
+ *          required: true
+ *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was modified successfully
@@ -297,12 +301,7 @@ usersRouter.post("/login", logIn);
  *          description: Internal Server Error
  */
 
-usersRouter.put(
-  "/modifyuser/:id",
-  verifyToken,
-  upload.single("image"),
-  modifyUser
-);
+usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
 
 /**
  * @swagger
@@ -323,6 +322,10 @@ usersRouter.put(
  *             type: string
  *          required: true
  *          description: The user id
+ *        - in: header
+ *          name: Authorization
+ *          required: true
+ *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was modified successfully
@@ -360,6 +363,10 @@ usersRouter.patch(
  *             type: string
  *          required: true
  *          description: The user id
+ *        - in: header
+ *          name: Authorization
+ *          required: true
+ *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was deleted successfully

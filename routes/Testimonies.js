@@ -13,6 +13,11 @@ import {
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *     testimonies:
  *       type: object
@@ -61,7 +66,7 @@ import {
  *          description: Internal Server Error
  */
 
-testimoniesRouter.post("/addtestimony", addTestimony);
+testimoniesRouter.post("/addtestimony", verifyToken, addTestimony);
 
 /**
  * @swagger
@@ -86,7 +91,7 @@ testimoniesRouter.post("/addtestimony", addTestimony);
  *          description: Internal Server Error
  */
 
-testimoniesRouter.get("/gettestimonies", verifyToken, admin, getTestimonies);
+testimoniesRouter.get("/gettestimonies", verifyToken, getTestimonies);
 
 /**
  * @swagger
@@ -118,7 +123,7 @@ testimoniesRouter.get("/gettestimonies", verifyToken, admin, getTestimonies);
  *          description: Internal Server Error
  */
 
-testimoniesRouter.delete("/deletetestimony/:id", deleteTestimony);
+testimoniesRouter.delete("/deletetestimony/:id", verifyToken, deleteTestimony);
 
 /**
  * @swagger
@@ -156,6 +161,6 @@ testimoniesRouter.delete("/deletetestimony/:id", deleteTestimony);
  *          description: Internal Server Error
  */
 
-testimoniesRouter.patch("/updatetestimony/:id", updateTestimony);
+testimoniesRouter.patch("/updatetestimony/:id", verifyToken, updateTestimony);
 
 export default testimoniesRouter;

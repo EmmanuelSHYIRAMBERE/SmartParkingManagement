@@ -10,10 +10,15 @@ import {
   getBooking,
   modifyBooking,
 } from "../controllers/Bookings";
-import { verifyToken } from "../middleware";
+import { admin, verifyToken } from "../middleware";
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *     bookings:
  *       type: object
@@ -77,7 +82,7 @@ import { verifyToken } from "../middleware";
  *          description: Internal Server Error
  */
 
-bookingsRouter.get("/getbooking/:id", getBooking);
+bookingsRouter.get("/getbooking/:id", verifyToken, getBooking);
 
 /**
  * @swagger
@@ -102,7 +107,7 @@ bookingsRouter.get("/getbooking/:id", getBooking);
  *          description: Internal Server Error
  */
 
-bookingsRouter.get("/getbookings", getBookings);
+bookingsRouter.get("/getbookings", verifyToken, admin, getBookings);
 
 /**
  * @swagger
@@ -127,7 +132,7 @@ bookingsRouter.get("/getbookings", getBookings);
  *          description: Internal Server Error
  */
 
-bookingsRouter.post("/booktour", bookTour);
+bookingsRouter.post("/booktour", verifyToken, bookTour);
 
 /**
  * @swagger

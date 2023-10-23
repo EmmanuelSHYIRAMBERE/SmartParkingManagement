@@ -13,10 +13,16 @@ import {
   updateTour,
   modifyTour,
 } from "../controllers/Tours";
+import tourImagesUpload from "../middleware/multer";
 
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *     tours:
  *       type: object
@@ -145,7 +151,7 @@ import {
  *          description: Internal Server Error
  */
 
-toursRouter.post("/addtour", upload.array("backDropImage[]"), addNewTour);
+toursRouter.post("/addtour", verifyToken, admin, tourImagesUpload, addNewTour);
 
 /**
  * @swagger
@@ -232,7 +238,7 @@ toursRouter.get("/gettour/:id", getOneTour);
  *          description: Internal Server Error
  */
 
-toursRouter.delete("/deletetour/:id", verifyToken, deleteTour);
+toursRouter.delete("/deletetour/:id", verifyToken, admin, deleteTour);
 
 /**
  * @swagger
@@ -270,7 +276,7 @@ toursRouter.delete("/deletetour/:id", verifyToken, deleteTour);
  *          description: Internal Server Error
  */
 
-toursRouter.patch("/updatetour/:id", verifyToken, updateTour);
+toursRouter.patch("/updatetour/:id", verifyToken, admin, updateTour);
 
 /**
  * @swagger
@@ -308,6 +314,6 @@ toursRouter.patch("/updatetour/:id", verifyToken, updateTour);
  *          description: Internal Server Error
  */
 
-toursRouter.put("/modifytour/:id", verifyToken, modifyTour);
+toursRouter.put("/modifytour/:id", verifyToken, admin, modifyTour);
 
 export default toursRouter;

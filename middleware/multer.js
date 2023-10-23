@@ -26,4 +26,9 @@ const upload = multer({
   },
 });
 
-export default upload;
+const tourImagesUpload = upload.fields([
+  { name: "backDropImage", maxCount: 1 },
+  { name: "gallery", maxCount: 15 },
+]);
+
+export default tourImagesUpload;
