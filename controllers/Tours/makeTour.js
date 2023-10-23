@@ -1,31 +1,32 @@
 import { Tours } from "../../models/tourModel.js";
-import tourImagesUpload from "../../middleware/multer.js";
 import cloudinary from "../../utility/cloudinary.js";
 import path from "path";
 
 export const addNewTour = async (req, res) => {
   try {
-    // const imageResult = cloudinary.uploader.upload(req.file.path);
-    console.log(req.files);
-    // const backDropImage = tourImagesUpload.single(req.files['backDropImage'][0])
-
-    // for ( var index = 1; index <= req.files['gallery'].length; index++ )
-
-    // const gallery = tourImagesUpload.array(gallery)
+    const tourImagesArray = [];
+    const backDropImage = await cloudinary.uploader.upload(
+      req.files["backDropImage"][0].path
+    );
+    for (let index = 0; index < req.files["gallery"].length; index++) {
+      tourImagesArray.push(
+        await cloudinary.uploader.upload(req.files["gallery"][index].path)
+      );
+    }
+    console.log("images:", tourImagesArray);
 
     const newTour = await Tours.create({
       ...req.body,
-      backDropImage: req.files.path,
-      gallery: req.files.path,
+      backDropImage: backDropImage.secure_url,
+      gallery: tourImagesArray.map((item) => item.secure_url),
     });
     return res.status(201).json({
       status: "Tour created successfully",
       data: { newTour },
     });
   } catch (error) {
-    console.log("error:", error);
-    res.status(500).json({
-      message: error.message,
+    res.status(400).json({
+      message: error,
     });
   }
 };

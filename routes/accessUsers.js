@@ -148,10 +148,8 @@ import {
  *   get:
  *     summary: Returns the list of all the users for the sake of admin
  *     tags: [Users]
- *     parameters:
- *        - in: header
- *          name: Authorization
- *          required: true
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *          description: The list of the users found

@@ -27,6 +27,20 @@ const options = {
     ],
   },
   apis: ["./routes/*.js"],
+  components: {
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+  security: [
+    {
+      BearerAuth: [], // An empty array means the Bearer token is required
+    },
+  ],
 };
 
 const specs = swaggerJSDoc(options);

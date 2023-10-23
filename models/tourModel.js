@@ -62,7 +62,7 @@ const tourShema = mongoose.Schema({
     required: false,
   },
   gallery: {
-    type: String,
+    type: Array,
     required: false,
   },
   priceIncluded: {
