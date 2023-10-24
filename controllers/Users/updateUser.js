@@ -1,6 +1,5 @@
 import { User } from "../../models";
-import dotenv from "dotenv";
-
+import cloudinary from "../../utility/cloudinary";
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -13,14 +12,12 @@ export const updateUser = async (req, res) => {
       });
     }
 
-    // const image = await cloudinary.uploader.upload(req.file.path);
-
-    const modifiedUser = await User.findById(id);
+    const image = await cloudinary.uploader.upload(req.file.path);
 
     res.status(200).json({
       message: `A user with ID: ${id}, updated successfully to;`,
       ...req.body,
-      // image: image.secure_url,
+      image: image.secure_url,
     });
   } catch (error) {
     res.status(500).json({

@@ -132,7 +132,7 @@ contactsRouter.get("/getcontact/:id", verifyToken, getContact);
 /**
  * @swagger
  * /holidays/contacts/updatecontact/{id}:
- *   patch:
+ *   put:
  *     summary: Update the contact data by id
  *     tags: [Contacts]
  *     security:
@@ -167,7 +167,7 @@ contactsRouter.get("/getcontact/:id", verifyToken, getContact);
  *          description: Internal Server Error
  */
 
-contactsRouter.patch("/updatecontact/:id", verifyToken, updateContact);
+contactsRouter.put("/updatecontact/:id", verifyToken, updateContact);
 /**
  * @swagger
  * /holidays/contacts/deletecontact/{id}:

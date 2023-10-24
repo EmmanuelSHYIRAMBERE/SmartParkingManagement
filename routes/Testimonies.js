@@ -134,7 +134,7 @@ testimoniesRouter.delete("/deletetestimony/:id", verifyToken, deleteTestimony);
 /**
  * @swagger
  * /holidays/testimonies/updatetestimony/{id}:
- *   patch:
+ *   put:
  *     summary: Update the testimony data by id
  *     tags: [Testimonies]
  *     security:
@@ -169,6 +169,6 @@ testimoniesRouter.delete("/deletetestimony/:id", verifyToken, deleteTestimony);
  *          description: Internal Server Error
  */
 
-testimoniesRouter.patch("/updatetestimony/:id", verifyToken, updateTestimony);
+testimoniesRouter.put("/updatetestimony/:id", verifyToken, updateTestimony);
 
 export default testimoniesRouter;

@@ -2,7 +2,7 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "tour_images");
+    cb(null, "user_images");
   },
 
   filename: (req, file, cb) => {
@@ -17,15 +17,11 @@ const upload = multer({
       callback(null, true);
     } else {
       // prevent to upload files
-      console.log("only jpeg & png supported!");
       callback(null, false);
     }
   },
 });
 
-const tourImagesUpload = upload.fields([
-  { name: "backDropImage", maxCount: 1 },
-  { name: "gallery", maxCount: 15 },
-]);
+const profileImagesUpload = upload.single("image");
 
-export default tourImagesUpload;
+export default profileImagesUpload;

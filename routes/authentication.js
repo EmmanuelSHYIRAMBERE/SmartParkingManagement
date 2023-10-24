@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyToken } from "../middleware";
-import { changePwd } from "../controllers/Authentication/passwordManage";
+import { changePwd, forgotPassword } from "../controllers/Authentication";
 
 const authenticate = express.Router();
 
@@ -35,7 +35,7 @@ const authenticate = express.Router();
 /**
  * @swagger
  * /holidays/changepassword/:
- *   post:
+ *   put:
  *     summary: Create a new password
  *     tags: [changePwd]
  *     security:
@@ -59,6 +59,7 @@ const authenticate = express.Router();
  *          description: Internal Server Error
  */
 
-authenticate.post("/", verifyToken, changePwd);
+authenticate.put("/", verifyToken, changePwd);
+authenticate.patch("/forgotpassword/:token", forgotPassword);
 
 export default authenticate;

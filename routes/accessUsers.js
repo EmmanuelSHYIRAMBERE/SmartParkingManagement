@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyToken, admin } from "../middleware";
-
+import profileImagesUpload from "../middleware/profileMulter";
 const usersRouter = express.Router();
 
 import {
@@ -12,6 +12,7 @@ import {
   modifyUser,
   deleteUser,
 } from "../controllers/Users";
+import multer from "multer";
 
 /**
  * @swagger
@@ -91,6 +92,7 @@ import {
  *           description: The fullNames of the user
  *         image:
  *           type: string
+ *           format: binary
  *           description: The profile picture of the user
  *         password:
  *           type: string
@@ -243,50 +245,12 @@ usersRouter.post("/signup", signUp);
 
 usersRouter.post("/login", logIn);
 
-/**
- * @swagger
- * /holidays/users/modifyuser/{id}:
- *   put:
- *     summary: Modify the structure of the user by id
- *     tags: [Users]
- *     security:
- *       - BearerAuth: []
- *     requestBody:
- *          required: true
- *          content:
- *            application/json:
- *               schema:
- *                   $ref: '#/components/schemas/userEdit'
- *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The user id
- *     responses:
- *       200:
- *          description: The user was modified successfully
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/userEdit'
- *       204:
- *          description: No any user in the database
- *       401:
- *          description: The user not authorised
- *       404:
- *          description: The user was not found
- *       500:
- *          description: Internal Server Error
- */
-
-usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
+// const upload = multer({ dest: "images" });
 
 /**
  * @swagger
  * /holidays/users/userupdate/{id}:
- *   patch:
+ *   put:
  *     summary: Update the user data by id
  *     tags: [Users]
  *     security:
@@ -294,7 +258,7 @@ usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
  *     requestBody:
  *          required: true
  *          content:
- *            application/json:
+ *            multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/userEdit'
  *     parameters:
@@ -308,7 +272,7 @@ usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
  *       200:
  *          description: The user was modified successfully
  *          content:
- *             application/json:
+ *             multipart/form-data:
  *               schema:
  *                   $ref: '#/components/schemas/userEdit'
  *       204:
@@ -321,7 +285,12 @@ usersRouter.put("/modifyuser/:id", verifyToken, modifyUser);
  *          description: Internal Server Error
  */
 
-usersRouter.patch("/userupdate/:id", verifyToken, updateUser);
+usersRouter.put(
+  "/userupdate/:id",
+  verifyToken,
+  profileImagesUpload,
+  updateUser
+);
 
 /**
  * @swagger

@@ -11,6 +11,7 @@ import {
   modifyBooking,
 } from "../controllers/Bookings";
 import { admin, verifyToken } from "../middleware";
+
 /**
  * @swagger
  * components:
@@ -177,7 +178,7 @@ bookingsRouter.delete("/deletebooking/:id", verifyToken, deleteBooking);
 /**
  * @swagger
  * /holidays/bookings/updatebooking/{id}:
- *   patch:
+ *   put:
  *     summary: Update the booking data by id
  *     tags: [Bookings]
  *     security:
@@ -212,12 +213,12 @@ bookingsRouter.delete("/deletebooking/:id", verifyToken, deleteBooking);
  *          description: Internal Server Error
  */
 
-bookingsRouter.patch("/updatebooking/:id", verifyToken, updateBooking);
+bookingsRouter.put("/updatebooking/:id", verifyToken, updateBooking);
 
 /**
  * @swagger
  * /holidays/bookings/modifybooking/{id}:
- *   put:
+ *   patch:
  *     summary: Modify the structure of the type of a booked data by id
  *     tags: [Bookings]
  *     security:
@@ -252,6 +253,6 @@ bookingsRouter.patch("/updatebooking/:id", verifyToken, updateBooking);
  *          description: Internal Server Error
  */
 
-bookingsRouter.put("/modifybooking/:id", verifyToken, modifyBooking);
+bookingsRouter.patch("/modifybooking/:id", verifyToken, modifyBooking);
 
 export default bookingsRouter;

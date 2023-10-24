@@ -248,7 +248,7 @@ toursRouter.delete("/deletetour/:id", verifyToken, admin, deleteTour);
 /**
  * @swagger
  * /holidays/tours/updatetour/{id}:
- *   patch:
+ *   put:
  *     summary: Update the tour data by id
  *     tags: [Tours]
  *     security:
@@ -283,12 +283,12 @@ toursRouter.delete("/deletetour/:id", verifyToken, admin, deleteTour);
  *          description: Internal Server Error
  */
 
-toursRouter.patch("/updatetour/:id", verifyToken, admin, updateTour);
+toursRouter.put("/updatetour/:id", verifyToken, admin, updateTour);
 
 /**
  * @swagger
  * /holidays/tours/modifytour/{id}:
- *   put:
+ *   patch:
  *     summary: Modify the structure of the type of a tour by id
  *     tags: [Tours]
  *     security:
@@ -323,6 +323,6 @@ toursRouter.patch("/updatetour/:id", verifyToken, admin, updateTour);
  *          description: Internal Server Error
  */
 
-toursRouter.put("/modifytour/:id", verifyToken, admin, modifyTour);
+toursRouter.patch("/modifytour/:id", verifyToken, admin, modifyTour);
 
 export default toursRouter;
