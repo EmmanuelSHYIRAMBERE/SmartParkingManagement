@@ -20,14 +20,7 @@ export const signUp = async (req, res) => {
     let token = getToken({ _id: newUser._id });
 
     res.status(201).json({
-      message: "user registerd successfully",
-      access_token: token,
-      user: {
-        email: newUser.email,
-        fullNames: newUser.fullNames,
-        location: newUser.location,
-        role: newUser.role,
-      },
+      message: "user registerd successfully, login to get access token",
     });
   } catch (error) {
     res.status(500).json({
