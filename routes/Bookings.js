@@ -25,16 +25,12 @@ import { admin, verifyToken } from "../middleware";
  *       type: object
  *       required:
  *         - tourID
- *         - userID
  *         - isPlayed
  *         - paymentMethod
  *       properties:
  *         tourID:
  *           type: string
  *           description: The ID of the tour associated with the booking
- *         userID:
- *           type: string
- *           description: The ID of the user making the booking
  *         isPlayed:
  *           type: boolean
  *           description: Indicates whether the tour has been played
@@ -43,8 +39,7 @@ import { admin, verifyToken } from "../middleware";
  *           description: The payment method used for the booking
  *       example:
  *         tourID: "12345"
- *         userID: "67890"
- *         isPlayed: true
+ *         isPlayed: false
  *         paymentMethod: "Credit Card"
  */
 

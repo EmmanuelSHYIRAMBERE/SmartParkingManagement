@@ -10,7 +10,6 @@ export const receiveContactEmail = (userEmail, userNames) => {
   };
   let transporter = nodemailer.createTransport(config);
 
-  console.log(userNames?.split(" ")[0]);
   let message = {
     from: process.env.Email,
     to: userEmail,
@@ -106,27 +105,22 @@ export const receiveContactEmail = (userEmail, userNames) => {
       <p>
         Dear ${userNames?.split(" ")[0]},
         <br /><br />
-        Your feedback has been received, and we're excited to hear from you and
-        look forward to assisting you with your travel plans.<br /><br /><br />
-        Your journey with Holidays Planners begins now. We invite you to explore
-        our website, discover exciting destinations, and start planning your
-        next getaway.
+        We sincerely appreciate your contact with Holidays Planners. Your valuable feedback has been received, and we are excited to engage with you to plan unforgettable travel experiences.<br /><br /><br />
+        Your journey with Holidays Planners commences now. We invite you to explore our website, discover exciting destinations, and initiate the planning of your next remarkable getaway.
       </p>
       <div class="button-container">
         <a
           href="https://holiday-planer-project.onrender.com/holidays/tours/gettours"
           class="button"
-          >Explore the World</a
+          >Discover Tours</a
         >
       </div>
     </div>
     <div class="footer">
-      Thank you for considering Holidays Planners. We are thrilled to have the
-      opportunity to assist you in creating memorable travel experiences that
-      will last a lifetime.<br /><br />
+      Thank you for choosing Holidays Planners. We are enthusiastic to have the opportunity to assist you in creating memorable travel experiences that will last a lifetime.<br /><br />
 
-      If you have any questions or need assistance, please feel free to contact
-      our dedicated support team at support@holidaysplanners.com.<br /><br /><br />
+      If you have any questions or need assistance, please feel free to contact our dedicated support team at support@holidaysplanners.com.
+<br /><br /><br />
 
       Your adventure starts here!<br /><br />
       <br />

@@ -4,3 +4,4 @@ export * from "./multer";
 export * from "./profileMulter";
 export * from "./sendEmail";
 export * from "./contactEmail";
+export * from "./bookingEmail";

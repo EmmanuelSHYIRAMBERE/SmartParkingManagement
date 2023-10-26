@@ -1,27 +1,26 @@
 import nodemailer from "nodemailer";
 
-export const sendEmail = (userEmail, userNames) => {
+export const receiveBookingEmail = (userEmail, userNames) => {
   let config = {
     service: "gmail",
     auth: {
       user: process.env.Email,
       pass: process.env.Password,
     },
+    debug: true,
   };
   let transporter = nodemailer.createTransport(config);
 
   let message = {
     from: process.env.Email,
     to: userEmail,
-    subject:
-      "Welcome to Holidays Planners, your gateway to unforgettable adventures and travel experiences",
+    subject: "Your Holidays Planners Tour Request Reservation is Received!",
     html: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Holidays Planners</title>
-
+    <title>Payment Confirmation - Holidays Planners</title>
     <style>
       body {
         background-color: #f5f5f5;
@@ -29,18 +28,15 @@ export const sendEmail = (userEmail, userNames) => {
         margin: 0;
         padding: 0;
       }
-
       .header {
         background-color: #009688;
         padding: 20px;
         text-align: center;
       }
-
       .header img {
         max-width: 200px;
         height: auto;
       }
-
       .content {
         max-width: 600px;
         margin: 0 auto;
@@ -49,7 +45,6 @@ export const sendEmail = (userEmail, userNames) => {
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
-
       h1 {
         color: #333;
         font-size: 28px;
@@ -57,19 +52,16 @@ export const sendEmail = (userEmail, userNames) => {
         padding-bottom: 10px;
         text-align: center;
       }
-
       p {
         color: #666;
         font-size: 16px;
         margin: 0;
         text-align: center;
       }
-
       .button-container {
         text-align: center;
         margin-top: 20px;
       }
-
       .button {
         display: inline-block;
         padding: 10px 20px;
@@ -79,11 +71,9 @@ export const sendEmail = (userEmail, userNames) => {
         border-radius: 5px;
         text-decoration: none;
       }
-
       .button:hover {
         background-color: #007a6e;
       }
-
       .footer {
         text-align: center;
         margin-top: 20px;
@@ -96,36 +86,37 @@ export const sendEmail = (userEmail, userNames) => {
     <div class="header">
       <a
         href="https://holiday-planer-project.onrender.com/holidays/tours/gettours"
-        ><img src="https://html.geekcodelab.com/holiday-planners/assets/images/logo.png" alt="HolidaysPlanners logo"
+        ><img
+          src="https://html.geekcodelab.com/holiday-planners/assets/images/logo.png"
+          alt="HolidaysPlanners logo"
       /></a>
     </div>
     <div class="content">
-      <h1>Your Adventure Begins,<br /> Welcome to Holidays Planners!</h1>
+      <h1>Payment Confirmation - Holidays Planners</h1>
       <p>
         Dear ${userNames?.split(" ")[0]},
         <br /><br />
-        We're delighted to welcome you to Holidays Planners, your gateway to unforgettable adventures and travel experiences. Your decision to join us marks the beginning of a journey filled with exploration, discovery, and cherished memories. <br /><br />Book your tour today and start your adventure!
+        Thank you for booking a tour with Holidays Planners! We're excited to
+        have you join us on this adventure. To complete your booking, please
+        choose your preferred method of payment.
       </p>
       <div class="button-container">
-        <a href="https://holiday-planer-project.onrender.com/holidays/tours/gettours" class="button">Discover Tours</a>
+        <a
+          href="../htmlFiles/bookingMethod.html"
+          class="button"
+          >Select Payment Method</a
+        >
       </div>
     </div>
     <div class="footer">
-      Thank you for choosing Holidays Planners as your travel partner. We can't
-      wait to be a part of your travel stories and help you create memories that
-      will last a lifetime. Your adventure starts here!<br /><br />
-
-      Feel free to explore and familiarize yourself with our platform.<br />
-      If you have any questions or need assistance with anything, don't hesitate
-      to reach out.<br />
-      We are here to ensure your experience with us is as smooth and enjoyable
-      as possible.<br /><br /><br />
-
+      If you have any questions or need assistance with the payment process or
+      any other inquiries, please don't hesitate to reach out. We are here to
+      ensure your experience with us is as smooth and enjoyable as possible.
+      <br /><br /><br />
       Best regards,
     </div>
   </body>
 </html>
-
 `,
   };
 
