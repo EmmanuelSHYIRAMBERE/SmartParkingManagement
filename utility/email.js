@@ -15,7 +15,7 @@ export const sendEmail = async (option) => {
   //Define email options
 
   const emailOptions = {
-    from: "HolidayPlanner support<holidayplanners@cineflix.com>",
+    from: "HolidayPlanner-support <support@holidayplanners.com>",
     to: option.email,
     subject: option.subject,
     text: option.message,

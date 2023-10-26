@@ -1,5 +1,6 @@
 import { Contact } from "../../models";
 import { User } from "../../models";
+import { receiveContactEmail } from "../../middleware";
 
 export const makeContact = async (req, res) => {
   try {
@@ -12,13 +13,17 @@ export const makeContact = async (req, res) => {
     }
 
     const contact = await Contact.create(req.body);
+
+    console.log(req.body.email);
+    receiveContactEmail(req.body.email, user.fullNames);
+
     res.status(201).json({
-      message: "A contact added successfully",
+      message: "Your feedback received successfully",
       data: { contact },
     });
   } catch (error) {
     res.status(500).json({
-      message: error.message,
+      message: error,
     });
   }
 };

@@ -128,7 +128,7 @@ contactsRouter.get("/getcontacts", verifyToken, admin, getContacts);
  *          description: Internal Server Error
  */
 
-contactsRouter.get("/getcontact/:id", verifyToken, getContact);
+contactsRouter.get("/getcontact/:id", verifyToken, admin, getContact);
 /**
  * @swagger
  * /holidays/contacts/updatecontact/{id}:
@@ -167,7 +167,7 @@ contactsRouter.get("/getcontact/:id", verifyToken, getContact);
  *          description: Internal Server Error
  */
 
-contactsRouter.put("/updatecontact/:id", verifyToken, updateContact);
+contactsRouter.put("/updatecontact/:id", verifyToken, admin, updateContact);
 /**
  * @swagger
  * /holidays/contacts/deletecontact/{id}:
@@ -200,6 +200,6 @@ contactsRouter.put("/updatecontact/:id", verifyToken, updateContact);
  *          description: Internal Server Error
  */
 
-contactsRouter.delete("/deletecontact/:id", verifyToken, deleteContact);
+contactsRouter.delete("/deletecontact/:id", verifyToken, admin, deleteContact);
 
 export default contactsRouter;

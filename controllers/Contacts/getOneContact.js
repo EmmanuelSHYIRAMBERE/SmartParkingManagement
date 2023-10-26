@@ -15,7 +15,7 @@ export const getContact = async (req, res) => {
     res.status(200).json({ contact });
   } catch (error) {
     res.status(500).json({
-      message: error.message,
+      message: error,
     });
   }
 };

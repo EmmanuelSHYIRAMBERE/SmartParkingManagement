@@ -2,6 +2,7 @@ import express from "express";
 import { verifyToken, admin } from "../middleware";
 import profileImagesUpload from "../middleware/profileMulter";
 const usersRouter = express.Router();
+import { sendEmail } from "../middleware";
 
 import {
   signUp,
@@ -12,7 +13,6 @@ import {
   modifyUser,
   deleteUser,
 } from "../controllers/Users";
-import multer from "multer";
 
 /**
  * @swagger

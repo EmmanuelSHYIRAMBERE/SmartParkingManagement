@@ -13,7 +13,6 @@ export const addNewTour = async (req, res) => {
         await cloudinary.uploader.upload(req.files["gallery"][index].path)
       );
     }
-    console.log("images:", tourImagesArray);
 
     const newTour = await Tours.create({
       ...req.body,
