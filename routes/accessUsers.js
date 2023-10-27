@@ -313,7 +313,7 @@ usersRouter.put(
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/User'
+ *                   $ref: '#/components/schemas/userEdit'
  *       204:
  *          description: No any user in the database
  *       401:

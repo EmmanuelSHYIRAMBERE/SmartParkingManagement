@@ -119,7 +119,7 @@ export const receiveContactEmail = (userEmail, userNames) => {
     <div class="footer">
       Thank you for choosing Holidays Planners. We are enthusiastic to have the opportunity to assist you in creating memorable travel experiences that will last a lifetime.<br /><br />
 
-      If you have any questions or need assistance, please feel free to contact our dedicated support team at support@holidaysplanners.com.
+      If you have any questions or need assistance, please feel free to contact our dedicated support team at holidaysplanners30@gmail.com.
 <br /><br /><br />
 
       Your adventure starts here!<br /><br />

@@ -5,6 +5,10 @@ const bookingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  userID: {
+    type: String,
+    required: true,
+  },
   isPlayed: {
     type: String,
     required: true,

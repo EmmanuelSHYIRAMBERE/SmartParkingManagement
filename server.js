@@ -22,7 +22,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://holiday-planer-project.onrender.com",
+        url: "https://holiday-planer-project.onrender.com/",
       },
     ],
   },
