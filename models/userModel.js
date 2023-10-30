@@ -22,10 +22,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    type: String,
-    required: false,
-  },
+  // location: {
+  //   type: String,
+  //   required: false,
+  // },
   // role: {
   //   type: String,
   //   default: "user",
