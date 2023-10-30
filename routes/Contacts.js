@@ -23,17 +23,17 @@ import { admin, verifyToken } from "../middleware";
  *     contacts:
  *       type: object
  *       required:
- *         - emails
+ *         - email
  *         - replying
  *       properties:
- *         emails:
+ *         email:
  *           type: string
  *           description: The email of the user
  *         replying:
  *           type: string
  *           description: The message to be communicated
  *       example:
- *         emails: "emashyirambere@gmail.com"
+ *         email: "example@gmail.com"
  *         replying: "Hello everyone, first all thanks for this project."
  */
 

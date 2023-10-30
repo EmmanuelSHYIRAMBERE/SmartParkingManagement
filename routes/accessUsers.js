@@ -47,16 +47,12 @@ import {
  *         location:
  *           type: string
  *           description: The location of the user
- *         role:
- *           type: string
- *           description: The role of the user i.e., user or admin
  *       example:
- *         email: emmanuelshyirambere@gmail.com
- *         fullNames: Emmanuel SHYIRAMBERE
+ *         email: example@gmail.com
+ *         fullNames: example fullname
  *         password: myPassword1
  *         phoneNo: "+25070000000"
  *         location: Kigali, Rwanda
- *         role: user
  *     login:
  *       type: object
  *       required:
@@ -70,7 +66,7 @@ import {
  *           type: string
  *           description: The password of the user
  *       example:
- *         email: emashyirambere@gmail.com
+ *         email: example@gmail.com
  *         password: myPassword
  *     userEdit:
  *       type: object
@@ -80,7 +76,6 @@ import {
  *         - image
  *         - password
  *         - phoneNo
- *         - role
  *       properties:
  *         email:
  *           type: string
@@ -101,17 +96,13 @@ import {
  *         location:
  *           type: string
  *           description: The location of the user
- *         role:
- *           type: string
- *           description: The role of the user i.e., user or admin
  *       example:
- *         email: emmanuelshyirambere@gmail.com
- *         fullNames: Emmanuel SHYIRAMBERE
+ *         email: example@gmail.com
+ *         fullNames: example fullname
  *         image: images.jpg
  *         password: myPassword1
  *         phoneNo: "+25070000000"
  *         location: Kigali, Rwanda
- *         role: user
  */
 
 /**
