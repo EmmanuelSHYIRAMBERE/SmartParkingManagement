@@ -132,11 +132,5 @@ export const receiveContactEmail = (userEmail, userNames) => {
 `,
   };
 
-  transporter.sendMail(message, (error, info) => {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
+  transporter.sendMail(message);
 };

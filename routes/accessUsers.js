@@ -30,7 +30,6 @@ import {
  *         - fullNames
  *         - password
  *         - phoneNo
- *         - location
  *         - role
  *       properties:
  *         email:
@@ -81,7 +80,6 @@ import {
  *         - image
  *         - password
  *         - phoneNo
- *         - location
  *         - role
  *       properties:
  *         email:

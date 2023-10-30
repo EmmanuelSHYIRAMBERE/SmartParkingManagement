@@ -25,23 +25,6 @@ import tourImagesUpload from "../middleware/multer";
  *       type: object
  *       required:
  *         - destination
- *         - backDropImage
- *         - title
- *         - description
- *         - duration
- *         - groupSize
- *         - price
- *         - discount
- *         - tourType
- *         - departure
- *         - seats
- *         - fromMonth
- *         - toMonth
- *         - departureTime
- *         - returntime
- *         - gallery
- *         - priceIncluded
- *         - priceNotIncluded
  *       properties:
  *         destination:
  *           type: string
