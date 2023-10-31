@@ -1,18 +1,13 @@
 import { Contact } from "../../models";
+import { catchAsyncError } from "../../utility";
+import errorHandler from "../../utility/errorHandlerClass";
 
-export const getContacts = async (req, res) => {
-  try {
-    const contact = await Contact.find({});
+export const getContacts = catchAsyncError(async (req, res, next) => {
+  const contact = await Contact.find({});
 
-    if (!contact) {
-      return res.status(404).json({
-        message: "Nothing found in database",
-      });
-    }
-
-    res.status(200).json(contact);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error });
+  if (!contact) {
+    return next(new errorHandler(`Nothing found in database`, 404));
   }
-};
+
+  res.status(200).json(contact);
+});

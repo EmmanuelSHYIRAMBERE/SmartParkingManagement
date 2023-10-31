@@ -1,23 +1,17 @@
 import { Testimony } from "../../models";
+import { catchAsyncError } from "../../utility";
+import errorHandler from "../../utility/errorHandlerClass";
 
-export const deleteTestimony = async (req, res) => {
-  try {
-    const { id } = req.params;
+export const deleteTestimony = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params;
 
-    const testimony = await Testimony.findByIdAndDelete({ _id: id });
+  const testimony = await Testimony.findByIdAndDelete({ _id: id });
 
-    if (!testimony) {
-      return res.status(404).json({
-        message: `A testimony with ID: ${id}, not found!`,
-      });
-    }
-
-    res.status(204).json({
-      message: `A testimony with ID: ${id}, deleted successfully!`,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error,
-    });
+  if (!testimony) {
+    return next(new errorHandler(`A testimony with ID: ${id}, not found`, 404));
   }
-};
+
+  res.status(204).json({
+    message: `A testimony with ID: ${id}, deleted successfully!`,
+  });
+});

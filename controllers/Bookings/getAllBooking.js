@@ -1,17 +1,13 @@
 import { Booking } from "../../models";
+import { catchAsyncError } from "../../utility";
+import errorHandler from "../../utility/errorHandlerClass";
 
-export const getBookings = async (req, res) => {
-  try {
-    const bookings = await Booking.find({});
+export const getBookings = catchAsyncError(async (req, res, next) => {
+  const bookings = await Booking.find({});
 
-    if (!bookings) {
-      return res.status(404).json({
-        message: "Nothing found in database",
-      });
-    }
-
-    res.status(200).json(bookings);
-  } catch (error) {
-    res.status(500).json({ message: error });
+  if (!bookings) {
+    return next(new errorHandler(`Nothing found in database`, 404));
   }
-};
+
+  res.status(200).json(bookings);
+});

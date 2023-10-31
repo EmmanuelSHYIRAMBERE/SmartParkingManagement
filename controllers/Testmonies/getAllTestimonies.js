@@ -1,17 +1,13 @@
 import { Testimony } from "../../models";
+import { catchAsyncError } from "../../utility";
+import errorHandler from "../../utility/errorHandlerClass";
 
-export const getTestimonies = async (req, res) => {
-  try {
-    const testimonies = await Testimony.find({});
+export const getTestimonies = catchAsyncError(async (req, res, next) => {
+  const testimonies = await Testimony.find({});
 
-    if (!testimonies) {
-      return res.status(404).json({
-        message: "Nothing found in database",
-      });
-    }
-
-    res.status(200).json(testimonies);
-  } catch (error) {
-    res.status(500).json({ message: error });
+  if (!testimonies) {
+    return next(new errorHandler(`Nothing found in database`, 404));
   }
-};
+
+  res.status(200).json(testimonies);
+});

@@ -1,27 +1,22 @@
 import { User } from "../../models";
 import cloudinary from "../../utility/cloudinary";
-export const updateUser = async (req, res) => {
-  try {
-    const { id } = req.params;
+import { catchAsyncError } from "../../utility";
+import errorHandler from "../../utility/errorHandlerClass";
 
-    const user = await User.findByIdAndUpdate({ _id: id }, req.body);
+export const updateUser = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params;
 
-    if (!user) {
-      return res.status(404).json({
-        message: `A  user with ID: ${id}, not found`,
-      });
-    }
+  const user = await User.findByIdAndUpdate({ _id: id }, req.body);
 
-    const image = await cloudinary.uploader.upload(req.file.path);
-
-    res.status(200).json({
-      message: `A user with ID: ${id}, updated successfully to;`,
-      ...req.body,
-      image: image.secure_url,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error,
-    });
+  if (!user) {
+    return next(new errorHandler(`A  user with ID: ${id}, not found`, 404));
   }
-};
+
+  const image = await cloudinary.uploader.upload(req.file.path);
+
+  res.status(200).json({
+    message: `A user with ID: ${id}, updated successfully to;`,
+    ...req.body,
+    image: image.secure_url,
+  });
+});

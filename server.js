@@ -7,6 +7,7 @@ import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
 import holidaysRouter from "./routes";
+import morgan from "morgan";
 
 const app = express();
 const port = process.env.PORT;
@@ -34,6 +35,7 @@ const specs = swaggerJSDoc(options);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(morgan("dev"));
 
 app.use("/holidays", holidaysRouter);
 app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));

@@ -1,23 +1,17 @@
 import { Booking } from "../../models";
+import { catchAsyncError } from "../../utility";
+import errorHandler from "../../utility/errorHandlerClass";
 
-export const deleteBooking = async (req, res) => {
-  try {
-    const { id } = req.params;
+export const deleteBooking = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params;
 
-    const booking = await Booking.findByIdAndDelete({ _id: id });
+  const booking = await Booking.findByIdAndDelete({ _id: id });
 
-    if (!booking) {
-      return res.status(404).json({
-        message: `A booking with ID: ${id}, not found!`,
-      });
-    }
-
-    res.status(204).json({
-      message: `A booking with ID: ${id}, deleted successfully!`,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error,
-    });
+  if (!booking) {
+    return next(new errorHandler(`A booking with ID: ${id}, not found`, 404));
   }
-};
+
+  res.status(204).json({
+    message: `A booking with ID: ${id}, deleted successfully!`,
+  });
+});
