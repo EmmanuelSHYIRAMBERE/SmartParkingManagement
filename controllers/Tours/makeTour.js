@@ -8,16 +8,21 @@ export const addNewTour = async (req, res) => {
     const backDropImage = await cloudinary.uploader.upload(
       req.files["backDropImage"][0].path
     );
-    for (let index = 0; index < req.files["gallery"].length; index++) {
-      tourImagesArray.push(
-        await cloudinary.uploader.upload(req.files["gallery"][index].path)
-      );
+
+    if (req.files["gallery"]) {
+      for (let index = 0; index < req.files["gallery"].length; index++) {
+        tourImagesArray.push(
+          await cloudinary.uploader.upload(req.files["gallery"][index].path)
+        );
+      }
     }
 
     const newTour = await Tours.create({
       ...req.body,
       backDropImage: backDropImage.secure_url,
-      gallery: tourImagesArray.map((item) => item.secure_url),
+      gallery: req.files["gallery"]
+        ? tourImagesArray.map((item) => item.secure_url)
+        : "",
     });
     return res.status(201).json({
       status: "Tour created successfully",
