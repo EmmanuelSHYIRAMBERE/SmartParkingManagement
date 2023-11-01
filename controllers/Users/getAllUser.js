@@ -3,7 +3,6 @@ import { catchAsyncError } from "../../utility";
 import errorHandler from "../../utility/errorHandlerClass";
 
 export const getAllUser = catchAsyncError(async (req, res, next) => {
-  // try {
   const users = await User.find({});
 
   if (!users) {
@@ -11,9 +10,4 @@ export const getAllUser = catchAsyncError(async (req, res, next) => {
   }
 
   res.status(200).json(users);
-  // } catch (error) {
-  //   res.status(500).json({
-  //     message: error,
-  //   });
-  // }
 });

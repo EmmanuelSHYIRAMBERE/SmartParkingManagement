@@ -44,8 +44,8 @@ import {
  *           type: string
  *           description: The phoneNo of the user
  *       example:
- *         email: emmanuelshyirambere@gmail.com
- *         fullNames: Emmanuel SHYIRAMBERE
+ *         email: example@gmail.com
+ *         fullNames: example ACCOUNT
  *         password: myPassword1
  *         phoneNo: "+25070000000"
  *     login:
@@ -61,7 +61,7 @@ import {
  *           type: string
  *           description: The password of the user
  *       example:
- *         email: emashyirambere@gmail.com
+ *         email: example@gmail.com
  *         password: myPassword
  *     userEdit:
  *       type: object
@@ -97,8 +97,8 @@ import {
  *           type: string
  *           description: The role of the user i.e., user or admin
  *       example:
- *         email: emmanuelshyirambere@gmail.com
- *         fullNames: Emmanuel SHYIRAMBERE
+ *         email: example@gmail.com
+ *         fullNames: example ACCOUNT
  *         image: images.jpg
  *         password: myPassword1
  *         phoneNo: "+25070000000"

@@ -11,7 +11,7 @@ export const deleteTestimony = catchAsyncError(async (req, res, next) => {
     return next(new errorHandler(`A testimony with ID: ${id}, not found`, 404));
   }
 
-  res.status(204).json({
+  res.status(200).json({
     message: `A testimony with ID: ${id}, deleted successfully!`,
   });
 });
