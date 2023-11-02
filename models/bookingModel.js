@@ -9,6 +9,18 @@ const bookingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  Date: {
+    type: Date,
+    required: true,
+  },
+  Status: {
+    type: String,
+    default: "pending",
+  },
+  NumberOfTicket: {
+    type: String,
+    required: true,
+  },
   isPlayed: {
     type: String,
     required: true,

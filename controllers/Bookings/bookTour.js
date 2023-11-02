@@ -25,6 +25,8 @@ export const bookTour = catchAsyncError(async (req, res, next) => {
   receiveBookingEmail(user.email, user.fullNames);
   res.status(201).json({
     message: `A tour with ID: ${tourID} is successfully booked`,
-    data: { bookingTour },
+    bookingData: { bookingTour },
+    tourData: { tour },
+    userData: { user },
   });
 });
