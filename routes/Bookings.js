@@ -9,6 +9,7 @@ import {
   updateBooking,
   getBooking,
   modifyBooking,
+  getCheckOutSession,
 } from "../controllers/Bookings";
 import { admin, verifyToken } from "../middleware";
 
@@ -53,6 +54,7 @@ import { admin, verifyToken } from "../middleware";
  *         tourID: "12345"
  *         userID: "67890"
  *         NumberOfTicket: "5"
+ *         Date: "January5, 1998"
  *         isPlayed: false
  *         paymentMethod: "Credit Card"
  */
@@ -263,5 +265,7 @@ bookingsRouter.put("/updatebooking/:id", verifyToken, updateBooking);
  */
 
 bookingsRouter.patch("/modifybooking/:id", verifyToken, modifyBooking);
+
+bookingsRouter.get("/checkout/:id", verifyToken, getCheckOutSession);
 
 export default bookingsRouter;

@@ -13,7 +13,6 @@ export const makeContact = catchAsyncError(async (req, res, next) => {
 
   const contact = await Contact.create(req.body);
 
-  console.log(req.body.email);
   receiveContactEmail(req.body.email, user.fullNames);
 
   res.status(201).json({

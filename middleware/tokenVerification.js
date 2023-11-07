@@ -19,7 +19,10 @@ export const verifyToken = (req, res, next) => {
         });
       }
 
+      req.user = verified;
       req.UserId = verified._id;
+      req.userEmail = verified.email;
+      req.userNames = verified.fullNames;
       next();
     });
   } catch (error) {

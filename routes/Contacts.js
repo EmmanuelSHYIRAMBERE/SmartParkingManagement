@@ -8,6 +8,7 @@ import {
   getContact,
   deleteContact,
   updateContact,
+  replyContacted,
 } from "../controllers/Contacts";
 import { admin, verifyToken } from "../middleware";
 
@@ -24,17 +25,18 @@ import { admin, verifyToken } from "../middleware";
  *       type: object
  *       required:
  *         - email
- *         - replying
+ *         - message
  *       properties:
  *         email:
  *           type: string
  *           description: The email of the user
- *         replying:
+ *         message:
  *           type: string
  *           description: The message to be communicated
  *       example:
  *         email: "example@gmail.com"
- *         replying: "Hello everyone, first all thanks for this project."
+ *         subject: "Thanks"
+ *         message: "Hello everyone, first all thanks for this project."
  */
 
 /**
@@ -201,5 +203,7 @@ contactsRouter.put("/updatecontact/:id", verifyToken, admin, updateContact);
  */
 
 contactsRouter.delete("/deletecontact/:id", verifyToken, admin, deleteContact);
+
+contactsRouter.post("/replycontact/:id", verifyToken, admin, replyContacted);
 
 export default contactsRouter;

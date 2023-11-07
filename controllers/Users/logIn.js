@@ -12,13 +12,15 @@ export const logIn = catchAsyncError(async (req, res, next) => {
     );
   }
 
-  let isPwdMatch = comparePwd(req.body.password, user.password);
+  let isPwdMatch = await comparePwd(req.body.password, user.password);
 
   if (!isPwdMatch) {
     return next(new errorHandler(`wrong password!`, 401));
   }
 
-  let token = getToken({ _id: user._id });
+  console.log(isPwdMatch);
+
+  let token = getToken({ _id: user._id, email: user.email });
 
   res.status(200).json({
     message: "Authorised!",

@@ -1,4 +1,4 @@
-import { getToken, hashPwd } from "../../utility";
+import { hashPwd } from "../../utility";
 import { User } from "../../models";
 import { sendEmail } from "../../middleware";
 import { catchAsyncError } from "../../utility";
@@ -9,7 +9,10 @@ export const signUp = catchAsyncError(async (req, res, next) => {
 
   if (user) {
     return next(
-      new errorHandler(`user with this email already exists, try others`, 409)
+      new errorHandler(
+        `user with the email: ${user.email} already exists, try others`,
+        409
+      )
     );
   }
 
@@ -20,9 +23,12 @@ export const signUp = catchAsyncError(async (req, res, next) => {
   let newUser = await User.create(req.body);
 
   sendEmail(req.body.email, req.body.fullNames);
-  let token = getToken({ _id: newUser._id });
 
   res.status(201).json({
     message: "user registerd successfully, login to get access token",
+    data: {
+      Names: newUser.fullNames,
+      Email: newUser.email,
+    },
   });
 });

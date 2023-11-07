@@ -4,3 +4,4 @@ export * from "./cloudinary";
 export * from "./email";
 export * from "./errorHandlerClass";
 export * from "./catchSync";
+export * from "./passport-setup";

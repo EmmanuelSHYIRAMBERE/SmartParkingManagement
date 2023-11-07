@@ -9,9 +9,21 @@ const contactSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-  replying: {
+  message: {
     type: String,
     required: true,
+  },
+  replyMessage: {
+    type: Object,
+    default: undefined,
+  },
+  dateSent: {
+    type: Date,
+    default: Date.now,
+  },
+  repliedDate: {
+    type: Date,
+    default: null,
   },
 });
 
