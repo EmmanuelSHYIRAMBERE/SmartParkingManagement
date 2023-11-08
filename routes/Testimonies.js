@@ -68,7 +68,7 @@ import {
  *          description: Internal Server Error
  */
 
-testimoniesRouter.post("/addtestimony", verifyToken, addTestimony);
+testimoniesRouter.post("/addtestimony", addTestimony);
 
 /**
  * @swagger
