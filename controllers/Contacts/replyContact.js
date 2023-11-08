@@ -5,7 +5,7 @@ import { catchAsyncError } from "../../utility";
 import errorHandler from "../../utility/errorHandlerClass";
 
 export const replyContacted = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
 
   const contact = await Contact.findById({ _id: id });
 
@@ -15,8 +15,9 @@ export const replyContacted = catchAsyncError(async (req, res, next) => {
     );
   }
 
+  console.log(contact.email);
   req.body.contactID = id;
-  req.body.adminEmail = req.userEmail;
+  req.body.replyEmail = req.userEmail;
   const emailRepliedTo = contact.email;
 
   contact.replyMessage = req.body;
@@ -30,7 +31,7 @@ export const replyContacted = catchAsyncError(async (req, res, next) => {
 
   let repliedData = await replyContact.create(req.body);
 
-  receiveContactEmail(req.body.adminEmail, req.userNames);
+  // receiveContactEmail(contact.email, contact.names);
 
   res.status(201).json({
     message: "Your reply sent successfully",

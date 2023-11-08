@@ -5,13 +5,13 @@ const replyContactSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  adminEmail: {
+  replyEmail: {
     type: String,
     required: true,
   },
   subject: {
     type: String,
-    required: false,
+    required: true,
   },
   replyMessage: {
     type: String,

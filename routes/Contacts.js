@@ -71,7 +71,7 @@ import { admin, verifyToken } from "../middleware";
  *          description: Internal Server Error
  */
 
-contactsRouter.post("/makecontact", verifyToken, makeContact);
+contactsRouter.post("/makecontact", makeContact);
 
 /**
  * @swagger
