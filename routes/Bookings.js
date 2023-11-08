@@ -96,7 +96,7 @@ import { admin, verifyToken } from "../middleware";
  *          description: Internal Server Error
  */
 
-bookingsRouter.get("/getbooking/:id", verifyToken, getBooking);
+bookingsRouter.get("/getbooking/:id", verifyToken, admin, getBooking);
 
 /**
  * @swagger
@@ -264,8 +264,8 @@ bookingsRouter.put("/updatebooking/:id", verifyToken, updateBooking);
  *          description: Internal Server Error
  */
 
-bookingsRouter.patch("/modifybooking/:id", verifyToken, modifyBooking);
+bookingsRouter.patch("/modifybooking/:id", verifyToken, admin, modifyBooking);
 
-bookingsRouter.get("/checkout/:id", verifyToken, getCheckOutSession);
+bookingsRouter.get("/checkout/:id", verifyToken, admin, getCheckOutSession);
 
 export default bookingsRouter;

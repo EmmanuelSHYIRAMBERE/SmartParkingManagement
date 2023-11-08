@@ -9,13 +9,9 @@ const bookingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  Date: {
-    type: Date,
-    required: true,
-  },
   Status: {
     type: String,
-    default: "pending",
+    default: "Pending",
   },
   NumberOfTicket: {
     type: String,
@@ -23,11 +19,19 @@ const bookingSchema = mongoose.Schema({
   },
   isPlayed: {
     type: String,
-    required: true,
+    default: "false",
   },
   paymentMethod: {
     type: String,
     required: true,
+  },
+  dateSent: {
+    type: Date,
+    default: Date.now,
+  },
+  approvedDate: {
+    type: Date,
+    default: null,
   },
 });
 

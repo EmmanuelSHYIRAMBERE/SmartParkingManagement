@@ -15,7 +15,6 @@ export const replyContacted = catchAsyncError(async (req, res, next) => {
     );
   }
 
-  console.log(contact.email);
   req.body.contactID = id;
   req.body.replyEmail = req.userEmail;
   const emailRepliedTo = contact.email;

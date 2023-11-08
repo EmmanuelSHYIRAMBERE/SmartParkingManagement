@@ -25,18 +25,42 @@ import { admin, verifyToken } from "../middleware";
  *       type: object
  *       required:
  *         - email
+ *         - names
+ *         - subject
  *         - message
  *       properties:
  *         email:
  *           type: string
  *           description: The email of the user
+ *         names:
+ *           type: string
+ *           description: The full names of the user
+ *         subject:
+ *           type: string
+ *           description: The subject of the message
  *         message:
  *           type: string
  *           description: The message to be communicated
  *       example:
  *         email: "example@gmail.com"
- *         subject: "Thanks"
+ *         names: "example names"
+ *         subject: "Thanking"
  *         message: "Hello everyone, first all thanks for this project."
+ *     reply:
+ *       type: object
+ *       required:
+ *         - subject
+ *         - replyMessage
+ *       properties:
+ *         subject:
+ *           type: string
+ *           description: The subject of the reply message
+ *         replyMessage:
+ *           type: string
+ *           description: The message to reply user who'd make contact
+ *       example:
+ *         subject: "Appreciation"
+ *         message: "Dear customer, we'd appreciated to your feedback. Thank you too!"
  */
 
 /**
@@ -50,7 +74,7 @@ import { admin, verifyToken } from "../middleware";
  * @swagger
  * /holidays/contacts/makecontact:
  *   post:
- *     summary: Write a new communication reply
+ *     summary: Write a new communication contact message
  *     tags: [Contacts]
  *     security:
  *       - BearerAuth: []
@@ -62,7 +86,7 @@ import { admin, verifyToken } from "../middleware";
  *                   $ref: '#/components/schemas/contacts'
  *     responses:
  *       201:
- *          description: The new reply information was successfully created
+ *          description: The new contact information was successfully created
  *          content:
  *             application/json:
  *               schema:
@@ -203,6 +227,38 @@ contactsRouter.put("/updatecontact/:id", verifyToken, admin, updateContact);
  */
 
 contactsRouter.delete("/deletecontact/:id", verifyToken, admin, deleteContact);
+
+/**
+ * @swagger
+ * /holidays/contacts/replycontact/{id}:
+ *   post:
+ *     summary: send a reply message
+ *     tags: [Contacts]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *          required: true
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   $ref: '#/components/schemas/reply'
+ *     parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *             type: string
+ *          required: true
+ *          description: The contact data id
+ *     responses:
+ *       201:
+ *          description: The new reply information was successfully created
+ *          content:
+ *             application/json:
+ *               schema:
+ *                   $ref: '#/components/schemas/reply'
+ *       500:
+ *          description: Internal Server Error
+ */
 
 contactsRouter.post("/replycontact/:id", verifyToken, admin, replyContacted);
 
