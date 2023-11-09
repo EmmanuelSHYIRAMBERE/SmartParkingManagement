@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken, admin } from "../middleware";
+import { verifyToken, admin, paginatedResults } from "../middleware";
 const toursRouter = express.Router();
 
 import {
@@ -11,6 +11,7 @@ import {
   modifyTour,
 } from "../controllers/Tours";
 import tourImagesUpload from "../middleware/multer";
+import { Tours } from "../models";
 
 /**
  * @swagger
@@ -162,7 +163,7 @@ toursRouter.post("/addtour", verifyToken, admin, tourImagesUpload, addNewTour);
  *          description: Internal Server Error
  */
 
-toursRouter.get("/gettours", getTours);
+toursRouter.get("/gettours", paginatedResults(Tours), getTours);
 
 /**
  * @swagger

@@ -8,6 +8,8 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 import holidaysRouter from "./routes";
 import morgan from "morgan";
+import { paginatedResults } from "./middleware";
+import { Tours } from "./models";
 
 const app = express();
 const port = process.env.PORT;
@@ -40,6 +42,10 @@ app.use(morgan("dev"));
 app.use("/holidays", holidaysRouter);
 app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/uploads", express.static("tour_images"));
+
+app.get("/users", paginatedResults(Tours), (req, res) => {
+  res.json(res.paginatedResults);
+});
 
 // mongoose.set("strictQuery", false)
 mongoose
