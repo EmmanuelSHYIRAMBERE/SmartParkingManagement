@@ -42,7 +42,7 @@ import { admin, verifyToken } from "../middleware";
  *           type: string
  *           description: The message to be communicated
  *       example:
- *         email: "example@gmail.com"
+ *         email: email@example.com
  *         names: "example names"
  *         subject: "Thanking"
  *         message: "Hello everyone, first all thanks for this project."

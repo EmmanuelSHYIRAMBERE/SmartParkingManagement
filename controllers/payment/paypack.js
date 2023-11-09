@@ -14,7 +14,7 @@ export const cashIn = (req, res) => {
     })
     .then((response) => {
       console.log(response.data);
-      res.status(201).json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((err) => {
       console.log(err);
@@ -30,7 +30,7 @@ export const cashOut = (req, res) => {
     })
     .then((response) => {
       console.log(response.data);
-      res.status(201).json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((err) => {
       console.log(err);
@@ -42,7 +42,7 @@ export const acountTransactions = (req, res) => {
     .transactions({ offset: 0, limit: 100 })
     .then((response) => {
       console.log(response.data);
-      res.status(201).json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((err) => {
       console.log(err);
@@ -53,7 +53,7 @@ export const accountEvents = (req, res) => {
     .events({ offset: 0, limit: 100 })
     .then((response) => {
       console.log(response.data);
-      res.status(201).json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((err) => {
       console.log(err);
@@ -64,7 +64,7 @@ export const accountInfo = (req, res) => {
     .me()
     .then((response) => {
       console.log(response.data);
-      res.status(201).json(response.data);
+      res.status(200).json(response.data);
     })
     .catch((err) => {
       console.log(err);

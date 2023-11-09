@@ -8,10 +8,6 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 import holidaysRouter from "./routes";
 import morgan from "morgan";
-import session from "express-session";
-
-import passport from "passport";
-require("./utility/passport-setup");
 
 const app = express();
 const port = process.env.PORT;
@@ -44,52 +40,6 @@ app.use(morgan("dev"));
 app.use("/holidays", holidaysRouter);
 app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/uploads", express.static("tour_images"));
-
-app.use(
-  session({
-    secret: process.env.JWT_SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-  res.render("htmlFiles/emailMessage.ejs");
-});
-app.get(
-  "/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-  })
-);
-
-app.get("/success", (req, res) => {
-  res.render("htmlFiles/profile.ejs", {
-    name: req.user.displayName,
-    email: req.user.emails[0].value,
-    pic: req.user.photos[0].value,
-  });
-});
-
-app.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/failed" }),
-  function (req, res) {
-    //Successful authentication, redirect home.
-    res.redirect("/success");
-  }
-);
-
-app.get("/logout", (req, res) => {
-  req.session = null;
-  req.logout();
-  res.redirect("/");
-});
 
 // mongoose.set("strictQuery", false)
 mongoose

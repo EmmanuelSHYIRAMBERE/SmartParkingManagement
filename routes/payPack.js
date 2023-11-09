@@ -34,7 +34,7 @@ import { admin, verifyToken } from "../middleware";
  *           description: The required amount for the booking
  *       example:
  *         number: "07XXXXXXX"
- *         amount: 500
+ *         amount: 100
  */
 
 /**
@@ -52,6 +52,12 @@ import { admin, verifyToken } from "../middleware";
  *     tags: [momoPay]
  *     security:
  *       - BearerAuth: []
+ *     requestBody:
+ *          required: true
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   $ref: '#/components/schemas/momoPay'
  *     responses:
  *       200:
  *          description: The user is succcessfully paid for the required amount for the booking
@@ -79,6 +85,12 @@ packRouter.get("/cashin", verifyToken, cashIn);
  *     tags: [momoPay]
  *     security:
  *       - BearerAuth: []
+ *     requestBody:
+ *          required: true
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   $ref: '#/components/schemas/momoPay'
  *     responses:
  *       200:
  *          description: The amount is succcessfully withdrawn
