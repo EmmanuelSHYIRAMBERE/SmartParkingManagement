@@ -148,13 +148,7 @@ import { User } from "../models";
  *          description: Internal Server Error
  */
 
-usersRouter.get(
-  "/getusers",
-  verifyToken,
-  admin,
-  paginatedResults(User),
-  getAllUser
-);
+usersRouter.get("/getusers", verifyToken, admin, getAllUser);
 
 /**
  * @swagger
