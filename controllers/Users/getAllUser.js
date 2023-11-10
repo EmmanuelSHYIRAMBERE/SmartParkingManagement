@@ -1,13 +1,17 @@
-import { User } from "../../models";
-import { catchAsyncError } from "../../utility";
-import errorHandler from "../../utility/errorHandlerClass";
+export const getAllUser = (req, res) => {
+  res.status(200).json(res.paginatedResults);
+};
 
-export const getAllUser = catchAsyncError(async (req, res, next) => {
-  const users = await User.find({});
+// import { User } from "../../models";
+// import { catchAsyncError } from "../../utility";
+// import errorHandler from "../../utility/errorHandlerClass";
 
-  if (!users) {
-    return next(new errorHandler(`Nothing found in database`, 404));
-  }
+// export const getAllUser = catchAsyncError(async (req, res, next) => {
+//   const users = await User.find({});
 
-  res.status(200).json(users);
-});
+//   if (!users) {
+//     return next(new errorHandler(`Nothing found in database`, 404));
+//   }
+
+//   res.status(200).json(users);
+// });

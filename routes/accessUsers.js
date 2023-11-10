@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken, admin } from "../middleware";
+import { verifyToken, admin, paginatedResults } from "../middleware";
 import profileImagesUpload from "../middleware/profileMulter";
 const usersRouter = express.Router();
 import { sendEmail } from "../middleware";
@@ -13,6 +13,7 @@ import {
   modifyUser,
   deleteUser,
 } from "../controllers/Users";
+import { User } from "../models";
 
 /**
  * @swagger
@@ -147,7 +148,13 @@ import {
  *          description: Internal Server Error
  */
 
-usersRouter.get("/getusers", verifyToken, admin, getAllUser);
+usersRouter.get(
+  "/getusers",
+  verifyToken,
+  admin,
+  paginatedResults(User),
+  getAllUser
+);
 
 /**
  * @swagger

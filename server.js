@@ -43,10 +43,6 @@ app.use("/holidays", holidaysRouter);
 app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/uploads", express.static("tour_images"));
 
-app.get("/users", paginatedResults(Tours), (req, res) => {
-  res.json(res.paginatedResults);
-});
-
 // mongoose.set("strictQuery", false)
 mongoose
   .connect(process.env.DB_connect_devs)

@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken, admin } from "../middleware";
+import { verifyToken, admin, paginatedResults } from "../middleware";
 
 const testimoniesRouter = express.Router();
 
@@ -9,6 +9,7 @@ import {
   updateTestimony,
   getTestimonies,
 } from "../controllers/Testmonies";
+import { Testimony } from "../models";
 
 /**
  * @swagger
@@ -95,7 +96,12 @@ testimoniesRouter.post("/addtestimony", addTestimony);
  *          description: Internal Server Error
  */
 
-testimoniesRouter.get("/gettestimonies", verifyToken, getTestimonies);
+testimoniesRouter.get(
+  "/gettestimonies",
+  verifyToken,
+  paginatedResults(Testimony),
+  getTestimonies
+);
 
 /**
  * @swagger

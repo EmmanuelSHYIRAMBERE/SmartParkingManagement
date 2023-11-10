@@ -10,7 +10,8 @@ import {
   updateContact,
   replyContacted,
 } from "../controllers/Contacts";
-import { admin, verifyToken } from "../middleware";
+import { admin, paginatedResults, verifyToken } from "../middleware";
+import { Contact } from "../models";
 
 /**
  * @swagger
@@ -122,7 +123,13 @@ contactsRouter.post("/makecontact", makeContact);
  *          description: Internal Server Error
  */
 
-contactsRouter.get("/getcontacts", verifyToken, admin, getContacts);
+contactsRouter.get(
+  "/getcontacts",
+  verifyToken,
+  admin,
+  paginatedResults(Contact),
+  getContacts
+);
 
 /**
  * @swagger

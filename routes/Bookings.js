@@ -11,7 +11,8 @@ import {
   modifyBooking,
   getCheckOutSession,
 } from "../controllers/Bookings";
-import { admin, verifyToken } from "../middleware";
+import { admin, paginatedResults, verifyToken } from "../middleware";
+import { Booking } from "../models";
 
 /**
  * @swagger
@@ -118,7 +119,13 @@ bookingsRouter.get("/getbooking/:id", verifyToken, admin, getBooking);
  *          description: Internal Server Error
  */
 
-bookingsRouter.get("/getbookings", verifyToken, admin, getBookings);
+bookingsRouter.get(
+  "/getbookings",
+  verifyToken,
+  admin,
+  paginatedResults(Booking),
+  getBookings
+);
 
 /**
  * @swagger

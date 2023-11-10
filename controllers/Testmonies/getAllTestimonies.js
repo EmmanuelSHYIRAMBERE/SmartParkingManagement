@@ -1,13 +1,17 @@
-import { Testimony } from "../../models";
-import { catchAsyncError } from "../../utility";
-import errorHandler from "../../utility/errorHandlerClass";
+export const getTestimonies = (req, res) => {
+  res.status(200).json(res.paginatedResults);
+};
 
-export const getTestimonies = catchAsyncError(async (req, res, next) => {
-  const testimonies = await Testimony.find({});
+// import { Testimony } from "../../models";
+// import { catchAsyncError } from "../../utility";
+// import errorHandler from "../../utility/errorHandlerClass";
 
-  if (!testimonies) {
-    return next(new errorHandler(`Nothing found in database`, 404));
-  }
+// export const getTestimonies = catchAsyncError(async (req, res, next) => {
+//   const testimonies = await Testimony.find({});
 
-  res.status(200).json(testimonies);
-});
+//   if (!testimonies) {
+//     return next(new errorHandler(`Nothing found in database`, 404));
+//   }
+
+//   res.status(200).json(testimonies);
+// });
