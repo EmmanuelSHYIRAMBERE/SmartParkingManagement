@@ -18,10 +18,10 @@ const options = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "Holiday-Planners-Project API Documentation",
+      title: "Smart-Parking-Project API Documentation",
       version: "1.0.0",
       description:
-        "This Holiday-Planners-Project API Documentation is designed to provide basics of how this API functions.",
+        "This Smart-Parking-Project API Documentation is designed to provide basics of how this API functions.",
     },
     servers: [
       {
@@ -50,7 +50,7 @@ mongoose
     console.log(`connected to mongo DB`);
     app.listen(port, () =>
       console.log(
-        `HoldaysPlanners project is running on port http://localhost:${port}`
+        `Smart Project project is running on port http://localhost:${port}`
       )
     );
   })

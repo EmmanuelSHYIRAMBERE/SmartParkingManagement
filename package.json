@@ -1,7 +1,7 @@
 {
   "name": "holiday-planner-project",
   "version": "1.0.0",
-  "description": "This Holiday-Planners-Project API Documentation is designed to provide basics of how this API functions.",
+  "description": "This Smart-Parking-Project API is designed to provide basics of how this system functions.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server.js",
