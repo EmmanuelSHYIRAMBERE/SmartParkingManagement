@@ -45,7 +45,6 @@ export const createCharges = catchAsyncError(async (req, res) => {
     receipt_email: "holidaysplanners30@gmail.com",
     amount: parseInt(req.body.amount) * 100,
     currency: "rwf",
-    card: req.body.card_id,
     customer: req.body.customer_id,
   });
   res.status(200).send(createCharge);
