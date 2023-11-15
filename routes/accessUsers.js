@@ -5,15 +5,12 @@ const usersRouter = express.Router();
 import { sendEmail } from "../middleware";
 
 import {
-  signUp,
-  logIn,
   getSingleUser,
   getAllUser,
   updateUser,
-  modifyUser,
   deleteUser,
 } from "../controllers/Users";
-import { User } from "../models";
+import { signUp, logIn } from "../controllers/Authentication";
 
 /**
  * @swagger
@@ -29,8 +26,9 @@ import { User } from "../models";
  *       required:
  *         - email
  *         - fullNames
- *         - password
  *         - phoneNo
+ *         - location
+ *         - password
  *       properties:
  *         email:
  *           type: string
@@ -38,17 +36,21 @@ import { User } from "../models";
  *         fullNames:
  *           type: string
  *           description: The fullNames of the user
- *         password:
- *           type: string
- *           description: The password of the user
  *         phoneNo:
  *           type: string
  *           description: The phoneNo of the user
+ *         location:
+ *           type: string
+ *           description: The address of the user
+ *         password:
+ *           type: string
+ *           description: The password of the user
  *       example:
  *         email: email@example.com
- *         fullNames: example ACCOUNT
- *         password: myPassword1
+ *         fullNames: user names
  *         phoneNo: "+25070000000"
+ *         location: myAddress
+ *         password: myPassword1
  *     login:
  *       type: object
  *       required:
@@ -63,16 +65,16 @@ import { User } from "../models";
  *           description: The password of the user
  *       example:
  *         email: email@example.com
- *         password: myPassword
- *     userEdit:
+ *         password: myPassword!
+ *     userUpdate:
  *       type: object
  *       required:
  *         - email
  *         - fullNames
- *         - image
- *         - password
+ *         - profilePicture
  *         - phoneNo
  *         - location
+ *         - password
  *         - role
  *       properties:
  *         email:
@@ -81,19 +83,19 @@ import { User } from "../models";
  *         fullNames:
  *           type: string
  *           description: The fullNames of the user
- *         image:
+ *         profilePicture:
  *           type: string
  *           format: binary
  *           description: The profile picture of the user
- *         password:
- *           type: string
- *           description: The password of the user
  *         phoneNo:
  *           type: string
  *           description: The phoneNo of the user
  *         location:
  *           type: string
  *           description: The location of the user
+ *         password:
+ *           type: string
+ *           description: The password of the user
  *         role:
  *           type: string
  *           description: The role of the user i.e., user or admin
@@ -101,9 +103,9 @@ import { User } from "../models";
  *         email: email@example.com
  *         fullNames: example ACCOUNT
  *         image: images.jpg
- *         password: myPassword1
  *         phoneNo: "+25070000000"
  *         location: Kigali, Rwanda
+ *         password: myPassword1
  *         role: user
  */
 
@@ -137,7 +139,7 @@ import { User } from "../models";
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/userUpdate'
  *       204:
  *          description: No any user in the database
  *       403:
@@ -186,7 +188,7 @@ usersRouter.get("/getuser/:id", verifyToken, getSingleUser);
 
 /**
  * @swagger
- * /holidays/users/signup:
+ * /parking/users/signup:
  *   post:
  *     summary: Create a new user
  *     tags: [Authentication]
@@ -211,7 +213,7 @@ usersRouter.post("/signup", signUp);
 
 /**
  * @swagger
- * /holidays/users/login:
+ * /parking/users/login:
  *   post:
  *     summary: Log into user account
  *     tags: [Authentication]
@@ -235,8 +237,6 @@ usersRouter.post("/signup", signUp);
  */
 
 usersRouter.post("/login", logIn);
-
-// const upload = multer({ dest: "images" });
 
 /**
  * @swagger

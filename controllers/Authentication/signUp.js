@@ -25,7 +25,7 @@ export const signUp = catchAsyncError(async (req, res, next) => {
   sendEmail(req.body.email, req.body.fullNames);
 
   res.status(201).json({
-    message: "user registerd successfully, login to get access token",
+    message: "user registerd successfully.",
     data: {
       Names: newUser.fullNames,
       Email: newUser.email,

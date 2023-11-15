@@ -1,5 +1,4 @@
 import express from "express";
-import { verifyToken } from "../middleware";
 import { changePwd, forgotPassword } from "../controllers/Authentication";
 
 const authenticate = express.Router();
@@ -16,30 +15,28 @@ const authenticate = express.Router();
  *     changePwd:
  *       type: object
  *       required:
- *         - email
- *         - existingPwd
+ *         - password
  *         - newPwd
  *       example:
- *         email: example@gmail.com
- *         existingPwd: myPassword1
+ *         password: myPassword1
  *         newPwd: myPassword2
  */
 
 /**
  * @swagger
- * tags:
- *   name: changePwd
- *   description: The password changing accesibility managing API
- */
-
-/**
- * @swagger
- * /holidays/changepassword/:
+ * /parking/password/changepassword/{id}:
  *   put:
  *     summary: Create a new password
- *     tags: [changePwd]
+ *     tags: [Authentication]
  *     security:
  *       - BearerAuth: []
+ *     parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *             type: string
+ *          required: true
+ *          description: The user id
  *     requestBody:
  *          required: true
  *          content:
@@ -59,7 +56,7 @@ const authenticate = express.Router();
  *          description: Internal Server Error
  */
 
-authenticate.put("/", verifyToken, changePwd);
+authenticate.put("/changepassword/:id", changePwd);
 authenticate.patch("/forgotpassword/:token", forgotPassword);
 
 export default authenticate;

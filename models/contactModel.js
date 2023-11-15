@@ -5,7 +5,7 @@ const contactSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  names: {
+  fullNames: {
     type: String,
     required: true,
   },

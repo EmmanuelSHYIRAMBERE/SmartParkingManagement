@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const bookingSchema = mongoose.Schema({
-  tourID: {
+  parkingID: {
     type: String,
     required: true,
   },
@@ -9,17 +9,13 @@ const bookingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  Status: {
-    type: String,
-    default: "Pending",
-  },
-  NumberOfTicket: {
+  plateNo: {
     type: String,
     required: true,
   },
-  isPlayed: {
+  Status: {
     type: String,
-    default: "false",
+    default: "pending",
   },
   paymentMethod: {
     type: String,

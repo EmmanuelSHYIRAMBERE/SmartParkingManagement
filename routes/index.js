@@ -1,5 +1,5 @@
 import express from "express";
-import toursRouter from "./availableTours";
+import parkingRouter from "./accessParkings";
 import usersRouter from "./accessUsers";
 import bookingsRouter from "./Bookings";
 import authenticate from "./authentication";
@@ -9,23 +9,22 @@ import errorHandler from "../utility/errorHandlerClass";
 import { globalErrorController } from "../controllers/Errors";
 import stripeRoute from "./payRoute";
 import packRouter from "./payPack";
-import sign from "./gmailLogin";
 
-const holidaysRouter = express.Router();
+const systemRouter = express.Router();
 
-holidaysRouter.use("/tours", toursRouter);
-holidaysRouter.use("/users", usersRouter);
-holidaysRouter.use("/contacts", contactsRouter);
-holidaysRouter.use("/testimonies", testimoniesRouter);
-holidaysRouter.use("/bookings", bookingsRouter);
-holidaysRouter.use("/changepassword", authenticate);
-holidaysRouter.use("/payment", stripeRoute);
-holidaysRouter.use("/momo", packRouter);
+systemRouter.use("/parkings", parkingRouter);
+systemRouter.use("/users", usersRouter);
+// systemRouter.use("/contacts", contactsRouter);
+// systemRouter.use("/testimonies", testimoniesRouter);
+// systemRouter.use("/bookings", bookingsRouter);
+systemRouter.use("/password", authenticate);
+systemRouter.use("/payment", stripeRoute);
+systemRouter.use("/momo", packRouter);
 
-holidaysRouter.all("*", (req, res, next) => {
+systemRouter.all("*", (req, res, next) => {
   next(new errorHandler(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-holidaysRouter.use(globalErrorController);
+systemRouter.use(globalErrorController);
 
-export default holidaysRouter;
+export default systemRouter;

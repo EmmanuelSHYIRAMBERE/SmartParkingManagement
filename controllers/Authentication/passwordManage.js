@@ -3,13 +3,17 @@ import { User } from "../../models";
 import errorHandler from "../../utility/errorHandlerClass";
 
 export const changePwd = catchAsyncError(async (req, res, next) => {
-  const { existingPwd, newPwd } = req.body;
+  const { password, newPwd } = req.body;
 
-  const { UserId } = req;
+  const { id } = req.params;
 
-  const user = await User.findById(UserId);
+  const user = await User.findOne({ _id: id });
 
-  let pwdCheck = await comparePwd(existingPwd, user.password);
+  if (!user) {
+    return next(new errorHandler(`User not found!`, 404));
+  }
+
+  let pwdCheck = await comparePwd(password, user.password);
 
   if (!pwdCheck) {
     return next(new errorHandler(`wrong email or password credentials!`, 401));

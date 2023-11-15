@@ -6,10 +6,8 @@ import "dotenv/config";
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
-import holidaysRouter from "./routes";
+import systemRouter from "./routes";
 import morgan from "morgan";
-import { paginatedResults } from "./middleware";
-import { Tours } from "./models";
 
 const app = express();
 const port = process.env.PORT;
@@ -25,7 +23,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://holiday-planer-project.onrender.com/",
+        url: "https://smartparkingsystem.onrender.com",
       },
     ],
   },
@@ -39,18 +37,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan("dev"));
 
-app.use("/holidays", holidaysRouter);
+app.use("/parking", systemRouter);
 app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/uploads", express.static("tour_images"));
 
-// mongoose.set("strictQuery", false)
 mongoose
   .connect(process.env.DB_connect_devs)
   .then((res) => {
     console.log(`connected to mongo DB`);
     app.listen(port, () =>
       console.log(
-        `Smart Project project is running on port http://localhost:${port}`
+        `Smart Parking project is running on port http://localhost:${port}`
       )
     );
   })

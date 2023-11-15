@@ -18,8 +18,6 @@ export const logIn = catchAsyncError(async (req, res, next) => {
     return next(new errorHandler(`wrong password!`, 401));
   }
 
-  console.log(isPwdMatch);
-
   let token = getToken({ _id: user._id, email: user.email });
 
   res.status(200).json({

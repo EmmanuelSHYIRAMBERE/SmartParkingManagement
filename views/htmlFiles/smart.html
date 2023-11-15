@@ -1,22 +1,4 @@
-import nodemailer from "nodemailer";
-
-export const sendEmail = (userEmail, userNames) => {
-  let config = {
-    service: "gmail",
-    auth: {
-      user: process.env.Email,
-      pass: process.env.Password,
-    },
-  };
-  let transporter = nodemailer.createTransport(config);
-
-  let message = {
-    from: process.env.Email,
-    to: userEmail,
-    subject:
-      "Welcome to Smart Parking System - Your Gateway to Effortless Parking",
-
-    html: `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -151,11 +133,3 @@ export const sendEmail = (userEmail, userNames) => {
     </div>
   </body>
 </html>
-
-
-`,
-  };
-
-  transporter.sendMail(message);
-  console.log("sent");
-};
