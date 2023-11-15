@@ -125,7 +125,7 @@ import { signUp, logIn } from "../controllers/Authentication";
 
 /**
  * @swagger
- * /holidays/users/getusers:
+ * /parking/users/getusers:
  *   get:
  *     summary: Returns the list of all the users for the sake of admin
  *     tags: [Users]
@@ -154,7 +154,7 @@ usersRouter.get("/getusers", verifyToken, admin, getAllUser);
 
 /**
  * @swagger
- * /holidays/users/getuser/{id}:
+ * /parking/users/getuser/{id}:
  *   get:
  *     summary: Get the user by id
  *     tags: [Users]
@@ -240,7 +240,7 @@ usersRouter.post("/login", logIn);
 
 /**
  * @swagger
- * /holidays/users/userupdate/{id}:
+ * /parking/users/userupdate/{id}:
  *   put:
  *     summary: Update the user data by id
  *     tags: [Users]
@@ -285,7 +285,7 @@ usersRouter.put(
 
 /**
  * @swagger
- * /holidays/users/userdelete/{id}:
+ * /parking/users/userdelete/{id}:
  *   delete:
  *     summary: Delete the user data by id
  *     tags: [Users]

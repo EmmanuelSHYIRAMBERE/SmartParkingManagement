@@ -1,22 +1,40 @@
-import { User } from "../../models";
+import { User, Admin } from "../../models";
 import { catchAsyncError } from "../../utility";
 import errorHandler from "../../utility/errorHandlerClass";
 
 export const modifyUser = catchAsyncError(async (req, res, next) => {
   const { id } = req.params;
 
-  const user = await User.findOneAndReplace({ _id: id }, req.body);
+  // Check in the User database
+  const user = await User.findOneAndUpdate({ _id: id }, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
+  // If not found in the User database, check in the Admin database
   if (!user) {
-    return next(new errorHandler(`A  user with ID: ${id}, not found`, 404));
+    const admin = await Admin.findOneAndUpdate({ _id: id }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!admin) {
+      return next(new errorHandler(`A user with ID: ${id} not found`, 404));
+    }
+
+    // You might need to modify the response based on your data structure
+    res.status(200).json({
+      message: `A user with ID: ${id}, modified successfully to:`,
+      ...req.body,
+      image: req.file.path,
+    });
+
+    return;
   }
 
-  // const image = await cloudinary.uploader.upload(req.file.path);
-
-  const modifiedUser = await Tours.findById(id);
-
+  // You might need to modify the response based on your data structure
   res.status(200).json({
-    messsage: `A user with ID: ${id}, modified successfully to;`,
+    message: `A user with ID: ${id}, modified successfully to:`,
     ...req.body,
     image: req.file.path,
   });
