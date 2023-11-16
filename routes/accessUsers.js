@@ -66,47 +66,6 @@ import { signUp, logIn } from "../controllers/Authentication";
  *       example:
  *         email: email@example.com
  *         password: myPassword!
- *     userUpdate:
- *       type: object
- *       required:
- *         - email
- *         - fullNames
- *         - profilePicture
- *         - phoneNo
- *         - location
- *         - password
- *         - role
- *       properties:
- *         email:
- *           type: string
- *           description: The email of the user
- *         fullNames:
- *           type: string
- *           description: The fullNames of the user
- *         profilePicture:
- *           type: string
- *           format: binary
- *           description: The profile picture of the user
- *         phoneNo:
- *           type: string
- *           description: The phoneNo of the user
- *         location:
- *           type: string
- *           description: The location of the user
- *         password:
- *           type: string
- *           description: The password of the user
- *         role:
- *           type: string
- *           description: The role of the user i.e., user or admin
- *       example:
- *         email: email@example.com
- *         fullNames: example ACCOUNT
- *         image: images.jpg
- *         phoneNo: "+25070000000"
- *         location: Kigali, Rwanda
- *         password: myPassword1
- *         role: user
  */
 
 /**
@@ -171,7 +130,7 @@ usersRouter.get("/getusers", verifyToken, admin, getAllUser);
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/signUp'
  *       204:
  *          description: No any user in the database
  *       403:
@@ -249,7 +208,7 @@ usersRouter.post("/login", logIn);
  *          content:
  *            multipart/form-data:
  *               schema:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/signUp'
  *     parameters:
  *        - in: path
  *          name: id
@@ -263,7 +222,7 @@ usersRouter.post("/login", logIn);
  *          content:
  *             multipart/form-data:
  *               schema:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/signUp'
  *       204:
  *          description: No any user in the database
  *       401:
@@ -302,7 +261,7 @@ usersRouter.put(
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/signUp'
  *       204:
  *          description: No any user in the database
  *       401:
