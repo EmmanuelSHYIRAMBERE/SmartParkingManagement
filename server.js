@@ -38,7 +38,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/parking", systemRouter);
-app.use("/api-documentation", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/Documentation", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/uploads", express.static("tour_images"));
 
 mongoose
