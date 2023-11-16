@@ -113,14 +113,14 @@ import { signUp, logIn } from "../controllers/Authentication";
  * @swagger
  * tags:
  *   name: Authentication
- *   description: The user login and signup managing API
+ *   description: The user authentication managing API
  */
 
 /**
  * @swagger
  * tags:
  *   name: Users
- *   description: The user accesibility managing API
+ *   description: The user authorization managing API
  */
 
 /**
@@ -140,8 +140,6 @@ import { signUp, logIn } from "../controllers/Authentication";
  *                 type: array
  *                 items:
  *                   $ref: '#/components/schemas/userUpdate'
- *       204:
- *          description: No any user in the database
  *       403:
  *          description: The user not authorised
  *       404:

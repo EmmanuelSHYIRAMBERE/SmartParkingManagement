@@ -29,11 +29,11 @@ import {
  *       properties:
  *         parkingNo:
  *           type: string
- *           description: The serial number of the parking slot
+ *           description: The serial number of the parking spot
  *         Amount:
  *           type: string
  *           format: binary
- *           description: The amount for a single hour in the parking slot
+ *           description: The amount for a single hour in the parking spot
  *         Address:
  *           type: string
  *           description: The location of the parking
@@ -58,7 +58,7 @@ import {
  * @swagger
  * /parking/parkings/addNewParking:
  *   post:
- *     summary: Create a new parking slot's data
+ *     summary: Create a new parking spot's data
  *     tags: [parkings]
  *     security:
  *       - BearerAuth: []
@@ -70,7 +70,7 @@ import {
  *                   $ref: '#/components/schemas/parkings'
  *     responses:
  *       201:
- *          description: The new parking slot data was successfully created
+ *          description: The new parking spot data was successfully created
  *          content:
  *             application/json:
  *               schema:
@@ -85,7 +85,7 @@ parkingRouter.post("/addNewParking", addNewParking);
  * @swagger
  * /parking/parkings/getTotalParking:
  *   get:
- *     summary: Returns the list of the total parking slots
+ *     summary: Returns the list of the total parking spots
  *     tags: [parkings]
  *     responses:
  *       200:
@@ -110,7 +110,7 @@ parkingRouter.get("/getTotalParking", getTotalParking);
  * @swagger
  * /parking/parkings/getOneParking/{id}:
  *   get:
- *     summary: Get a single parking slot by id
+ *     summary: Get a single parking spot by id
  *     tags: [parkings]
  *     parameters:
  *        - in: path
@@ -118,10 +118,10 @@ parkingRouter.get("/getTotalParking", getTotalParking);
  *          schema:
  *             type: string
  *          required: true
- *          description: The parking slot id
+ *          description: The parking spot id
  *     responses:
  *       200:
- *          description: The parking slot found by id
+ *          description: The parking spot found by id
  *          content:
  *             application/json:
  *               schema:
@@ -138,9 +138,9 @@ parkingRouter.get("/getOneParking/:id", getOneParking);
 
 /**
  * @swagger
- * /parking/parkings/deleteParkingSlot/{id}:
+ * /parking/parkings/deleteParkingSpot/{id}:
  *   delete:
- *     summary: Delete the parking slot's data by id
+ *     summary: Delete the parking spot's data by id
  *     tags: [parkings]
  *     security:
  *       - BearerAuth: []
@@ -150,10 +150,10 @@ parkingRouter.get("/getOneParking/:id", getOneParking);
  *          schema:
  *             type: string
  *          required: true
- *          description: The parking slot id
+ *          description: The parking spot id
  *     responses:
  *       200:
- *          description: The parking slot was deleted successfully
+ *          description: The parking spot was deleted successfully
  *          content:
  *             application/json:
  *               schema:
@@ -168,13 +168,13 @@ parkingRouter.get("/getOneParking/:id", getOneParking);
  *          description: Internal Server Error
  */
 
-parkingRouter.delete("/deleteParkingSlot/:id", deleteParkingSlot);
+parkingRouter.delete("/deleteParkingSpot/:id", deleteParkingSlot);
 
 /**
  * @swagger
  * /parking/parkings/updateParking/{id}:
  *   put:
- *     summary: Update the parking slot's data by id
+ *     summary: Update the parking spot's data by id
  *     tags: [parkings]
  *     security:
  *       - BearerAuth: []
@@ -190,10 +190,10 @@ parkingRouter.delete("/deleteParkingSlot/:id", deleteParkingSlot);
  *          schema:
  *             type: string
  *          required: true
- *          description: The parking id
+ *          description: The parking spot's id
  *     responses:
  *       200:
- *          description: The parking slot's data was modified successfully
+ *          description: The parking spot's data was modified successfully
  *          content:
  *             application/json:
  *               schema:

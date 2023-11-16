@@ -3,7 +3,7 @@ import express from "express";
 const bookingsRouter = express.Router();
 
 import {
-  bookTour,
+  bookParkingSpot,
   getBookings,
   deleteBooking,
   updateBooking,
@@ -14,24 +14,114 @@ import {
 import { admin, paginatedResults, verifyToken } from "../middleware";
 import { Booking } from "../models";
 
-bookingsRouter.get("/getbooking/:id", verifyToken, admin, getBooking);
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   schemas:
+ *     reservations:
+ *       type: object
+ *       required:
+ *         - parkingID
+ *         - userID
+ *         - plateNo
+ *         - paymentMethod
+ *       properties:
+ *         parkingID:
+ *           type: string
+ *           description: The id of the parking spot
+ *         userID:
+ *           type: string
+ *           description: The id of the user
+ *         plateNo:
+ *           type: string
+ *           format: binary
+ *           description: The plate number of a car
+ *         paymentMethod:
+ *           type: string
+ *           description: The favourable payment method for the user
+ *       example:
+ *         parkingID: "P-12345"
+ *         userID: "U-56789"
+ *         plateNo: "ABC-123"
+ *         paymentMethod: "Credit Card"
+ */
 
-bookingsRouter.get(
-  "/getbookings",
-  verifyToken,
-  admin,
-  paginatedResults(Booking),
-  getBookings
-);
+/**
+ * @swagger
+ * tags:
+ *   name: Resevations
+ *   description: The system's reservations managing API
+ */
 
-bookingsRouter.post("/booktour", verifyToken, bookTour);
+/**
+ * @swagger
+ * /parking/reservations/bookParking/:
+ *   post:
+ *     summary: Reserved the available parking spot
+ *     tags: [Resevations]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *          required: true
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   $ref: '#/components/schemas/reservations'
+ *     responses:
+ *       200:
+ *          description: The user successfully reserved the parking spot
+ *          content:
+ *             application/json:
+ *               schema:
+ *                   $ref: '#/components/schemas/reservations'
+ *       404:
+ *          description: Not found
+ *       500:
+ *          description: Internal Server Error
+ */
 
-bookingsRouter.delete("/deletebooking/:id", verifyToken, deleteBooking);
+bookingsRouter.post("/bookParking", bookParkingSpot);
 
-bookingsRouter.put("/updatebooking/:id", verifyToken, updateBooking);
+/**
+ * @swagger
+ * /parking/reservations/getreservations:
+ *   get:
+ *     summary: Returns the list of all the reserved parking spot
+ *     tags: [Resevations]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *          description: Successfully returns the list of all the reserved parking spot
+ *          content:
+ *             application/json:
+ *               schema:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/reservations'
+ *       403:
+ *          description: The user not authorised
+ *       404:
+ *          description: Not found
+ *       500:
+ *          description: Internal Server Error
+ */
 
-bookingsRouter.patch("/modifybooking/:id", verifyToken, admin, modifyBooking);
+bookingsRouter.get("/getreservations", getBookings);
 
-bookingsRouter.get("/checkout/:id", verifyToken, admin, getCheckOutSession);
+bookingsRouter.get("/getbooking/:id", getBooking);
+
+bookingsRouter.delete("/deletebooking/:id", deleteBooking);
+
+bookingsRouter.put("/updatebooking/:id", updateBooking);
+
+bookingsRouter.patch("/modifybooking/:id", modifyBooking);
+
+bookingsRouter.get("/checkout/:id", getCheckOutSession);
 
 export default bookingsRouter;

@@ -17,7 +17,7 @@ const parkingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  availabilty: {
+  availability: {
     type: String,
     default: "available",
   },

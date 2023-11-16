@@ -16,7 +16,7 @@ systemRouter.use("/parkings", parkingRouter);
 systemRouter.use("/users", usersRouter);
 // systemRouter.use("/contacts", contactsRouter);
 // systemRouter.use("/testimonies", testimoniesRouter);
-// systemRouter.use("/bookings", bookingsRouter);
+systemRouter.use("/reservations", bookingsRouter);
 systemRouter.use("/password", authenticate);
 systemRouter.use("/payment", stripeRoute);
 systemRouter.use("/momo", packRouter);
